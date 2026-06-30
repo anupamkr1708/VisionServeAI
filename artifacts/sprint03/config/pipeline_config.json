@@ -1,0 +1,23 @@
+{
+    "PROJECT_NAME": "VisionServeAI",
+    "SPRINT": "03",
+    "DATA_ROOT": "/kaggle/input/datasets/organizations/nih-chest-xrays/data",
+    "METADATA_FILE": "/kaggle/input/datasets/organizations/nih-chest-xrays/data/Data_Entry_2017.csv",
+    "BBOX_FILE": "/kaggle/input/datasets/organizations/nih-chest-xrays/data/BBox_List_2017.csv",
+    "TEST_LIST_FILE": "/kaggle/input/datasets/organizations/nih-chest-xrays/data/test_list.txt",
+    "TRAIN_VAL_LIST_FILE": "/kaggle/input/datasets/organizations/nih-chest-xrays/data/train_val_list.txt",
+    "IMAGE_SIZE": [
+        224,
+        224
+    ],
+    "NUM_CLASSES": 14,
+    "TOTAL_IMAGES": 112120,
+    "TOTAL_PATIENTS": 30805,
+    "TRAIN_RATIO": 0.8,
+    "VAL_RATIO": 0.2,
+    "RANDOM_SEED": 42,
+    "BATCH_SIZE": 32,
+    "NUM_WORKERS": 2,
+    "SCHEMA_VERSION": "v1",
+    "OUTPUT_DIR": "/kaggle/working/visionserveai/sprint03"
+}

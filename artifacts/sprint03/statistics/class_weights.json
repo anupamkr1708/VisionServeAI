@@ -1,0 +1,72 @@
+{
+    "Atelectasis": {
+        "pos_weight": 9.483127,
+        "positive_count": 6638,
+        "negative_count": 62949
+    },
+    "Cardiomegaly": {
+        "pos_weight": 50.35572,
+        "positive_count": 1355,
+        "negative_count": 68232
+    },
+    "Consolidation": {
+        "pos_weight": 29.150347,
+        "positive_count": 2308,
+        "negative_count": 67279
+    },
+    "Edema": {
+        "pos_weight": 62.549772,
+        "positive_count": 1095,
+        "negative_count": 68492
+    },
+    "Effusion": {
+        "pos_weight": 9.002444,
+        "positive_count": 6957,
+        "negative_count": 62630
+    },
+    "Emphysema": {
+        "pos_weight": 58.476068,
+        "positive_count": 1170,
+        "negative_count": 68417
+    },
+    "Fibrosis": {
+        "pos_weight": 69.218971,
+        "positive_count": 991,
+        "negative_count": 68596
+    },
+    "Hernia": {
+        "pos_weight": 604.104348,
+        "positive_count": 115,
+        "negative_count": 69472
+    },
+    "Infiltration": {
+        "pos_weight": 5.228139,
+        "positive_count": 11173,
+        "negative_count": 58414
+    },
+    "Mass": {
+        "pos_weight": 20.46422,
+        "positive_count": 3242,
+        "negative_count": 66345
+    },
+    "Nodule": {
+        "pos_weight": 17.273897,
+        "positive_count": 3808,
+        "negative_count": 65779
+    },
+    "Pleural_Thickening": {
+        "pos_weight": 38.226043,
+        "positive_count": 1774,
+        "negative_count": 67813
+    },
+    "Pneumonia": {
+        "pos_weight": 97.84517,
+        "positive_count": 704,
+        "negative_count": 68883
+    },
+    "Pneumothorax": {
+        "pos_weight": 31.562939,
+        "positive_count": 2137,
+        "negative_count": 67450
+    }
+}

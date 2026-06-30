@@ -1,0 +1,422 @@
+{
+    "Atelectasis": {
+        "train": {
+            "positive_samples": 6638,
+            "negative_samples": 62949,
+            "total_samples": 69587,
+            "positive_frequency": 0.095391,
+            "imbalance_ratio": 9.4831
+        },
+        "val": {
+            "positive_samples": 1642,
+            "negative_samples": 15295,
+            "total_samples": 16937,
+            "positive_frequency": 0.096948,
+            "imbalance_ratio": 9.3149
+        },
+        "test": {
+            "positive_samples": 3279,
+            "negative_samples": 22317,
+            "total_samples": 25596,
+            "positive_frequency": 0.128106,
+            "imbalance_ratio": 6.806
+        },
+        "all": {
+            "positive_samples": 11559,
+            "negative_samples": 100561,
+            "total_samples": 112120,
+            "positive_frequency": 0.103095,
+            "imbalance_ratio": 8.6998
+        }
+    },
+    "Cardiomegaly": {
+        "train": {
+            "positive_samples": 1355,
+            "negative_samples": 68232,
+            "total_samples": 69587,
+            "positive_frequency": 0.019472,
+            "imbalance_ratio": 50.3557
+        },
+        "val": {
+            "positive_samples": 352,
+            "negative_samples": 16585,
+            "total_samples": 16937,
+            "positive_frequency": 0.020783,
+            "imbalance_ratio": 47.1165
+        },
+        "test": {
+            "positive_samples": 1069,
+            "negative_samples": 24527,
+            "total_samples": 25596,
+            "positive_frequency": 0.041764,
+            "imbalance_ratio": 22.9439
+        },
+        "all": {
+            "positive_samples": 2776,
+            "negative_samples": 109344,
+            "total_samples": 112120,
+            "positive_frequency": 0.024759,
+            "imbalance_ratio": 39.389
+        }
+    },
+    "Consolidation": {
+        "train": {
+            "positive_samples": 2308,
+            "negative_samples": 67279,
+            "total_samples": 69587,
+            "positive_frequency": 0.033167,
+            "imbalance_ratio": 29.1503
+        },
+        "val": {
+            "positive_samples": 544,
+            "negative_samples": 16393,
+            "total_samples": 16937,
+            "positive_frequency": 0.032119,
+            "imbalance_ratio": 30.1342
+        },
+        "test": {
+            "positive_samples": 1815,
+            "negative_samples": 23781,
+            "total_samples": 25596,
+            "positive_frequency": 0.07091,
+            "imbalance_ratio": 13.1025
+        },
+        "all": {
+            "positive_samples": 4667,
+            "negative_samples": 107453,
+            "total_samples": 112120,
+            "positive_frequency": 0.041625,
+            "imbalance_ratio": 23.024
+        }
+    },
+    "Edema": {
+        "train": {
+            "positive_samples": 1095,
+            "negative_samples": 68492,
+            "total_samples": 69587,
+            "positive_frequency": 0.015736,
+            "imbalance_ratio": 62.5498
+        },
+        "val": {
+            "positive_samples": 283,
+            "negative_samples": 16654,
+            "total_samples": 16937,
+            "positive_frequency": 0.016709,
+            "imbalance_ratio": 58.8481
+        },
+        "test": {
+            "positive_samples": 925,
+            "negative_samples": 24671,
+            "total_samples": 25596,
+            "positive_frequency": 0.036138,
+            "imbalance_ratio": 26.6714
+        },
+        "all": {
+            "positive_samples": 2303,
+            "negative_samples": 109817,
+            "total_samples": 112120,
+            "positive_frequency": 0.02054,
+            "imbalance_ratio": 47.6843
+        }
+    },
+    "Effusion": {
+        "train": {
+            "positive_samples": 6957,
+            "negative_samples": 62630,
+            "total_samples": 69587,
+            "positive_frequency": 0.099976,
+            "imbalance_ratio": 9.0024
+        },
+        "val": {
+            "positive_samples": 1702,
+            "negative_samples": 15235,
+            "total_samples": 16937,
+            "positive_frequency": 0.10049,
+            "imbalance_ratio": 8.9512
+        },
+        "test": {
+            "positive_samples": 4658,
+            "negative_samples": 20938,
+            "total_samples": 25596,
+            "positive_frequency": 0.181982,
+            "imbalance_ratio": 4.4951
+        },
+        "all": {
+            "positive_samples": 13317,
+            "negative_samples": 98803,
+            "total_samples": 112120,
+            "positive_frequency": 0.118775,
+            "imbalance_ratio": 7.4193
+        }
+    },
+    "Emphysema": {
+        "train": {
+            "positive_samples": 1170,
+            "negative_samples": 68417,
+            "total_samples": 69587,
+            "positive_frequency": 0.016813,
+            "imbalance_ratio": 58.4761
+        },
+        "val": {
+            "positive_samples": 253,
+            "negative_samples": 16684,
+            "total_samples": 16937,
+            "positive_frequency": 0.014938,
+            "imbalance_ratio": 65.9447
+        },
+        "test": {
+            "positive_samples": 1093,
+            "negative_samples": 24503,
+            "total_samples": 25596,
+            "positive_frequency": 0.042702,
+            "imbalance_ratio": 22.4181
+        },
+        "all": {
+            "positive_samples": 2516,
+            "negative_samples": 109604,
+            "total_samples": 112120,
+            "positive_frequency": 0.02244,
+            "imbalance_ratio": 43.5628
+        }
+    },
+    "Fibrosis": {
+        "train": {
+            "positive_samples": 991,
+            "negative_samples": 68596,
+            "total_samples": 69587,
+            "positive_frequency": 0.014241,
+            "imbalance_ratio": 69.219
+        },
+        "val": {
+            "positive_samples": 260,
+            "negative_samples": 16677,
+            "total_samples": 16937,
+            "positive_frequency": 0.015351,
+            "imbalance_ratio": 64.1423
+        },
+        "test": {
+            "positive_samples": 435,
+            "negative_samples": 25161,
+            "total_samples": 25596,
+            "positive_frequency": 0.016995,
+            "imbalance_ratio": 57.8414
+        },
+        "all": {
+            "positive_samples": 1686,
+            "negative_samples": 110434,
+            "total_samples": 112120,
+            "positive_frequency": 0.015037,
+            "imbalance_ratio": 65.5006
+        }
+    },
+    "Hernia": {
+        "train": {
+            "positive_samples": 115,
+            "negative_samples": 69472,
+            "total_samples": 69587,
+            "positive_frequency": 0.001653,
+            "imbalance_ratio": 604.1043
+        },
+        "val": {
+            "positive_samples": 26,
+            "negative_samples": 16911,
+            "total_samples": 16937,
+            "positive_frequency": 0.001535,
+            "imbalance_ratio": 650.4231
+        },
+        "test": {
+            "positive_samples": 86,
+            "negative_samples": 25510,
+            "total_samples": 25596,
+            "positive_frequency": 0.00336,
+            "imbalance_ratio": 296.6279
+        },
+        "all": {
+            "positive_samples": 227,
+            "negative_samples": 111893,
+            "total_samples": 112120,
+            "positive_frequency": 0.002025,
+            "imbalance_ratio": 492.9207
+        }
+    },
+    "Infiltration": {
+        "train": {
+            "positive_samples": 11173,
+            "negative_samples": 58414,
+            "total_samples": 69587,
+            "positive_frequency": 0.160562,
+            "imbalance_ratio": 5.2281
+        },
+        "val": {
+            "positive_samples": 2609,
+            "negative_samples": 14328,
+            "total_samples": 16937,
+            "positive_frequency": 0.154041,
+            "imbalance_ratio": 5.4918
+        },
+        "test": {
+            "positive_samples": 6112,
+            "negative_samples": 19484,
+            "total_samples": 25596,
+            "positive_frequency": 0.238787,
+            "imbalance_ratio": 3.1878
+        },
+        "all": {
+            "positive_samples": 19894,
+            "negative_samples": 92226,
+            "total_samples": 112120,
+            "positive_frequency": 0.177435,
+            "imbalance_ratio": 4.6359
+        }
+    },
+    "Mass": {
+        "train": {
+            "positive_samples": 3242,
+            "negative_samples": 66345,
+            "total_samples": 69587,
+            "positive_frequency": 0.046589,
+            "imbalance_ratio": 20.4642
+        },
+        "val": {
+            "positive_samples": 792,
+            "negative_samples": 16145,
+            "total_samples": 16937,
+            "positive_frequency": 0.046762,
+            "imbalance_ratio": 20.3851
+        },
+        "test": {
+            "positive_samples": 1748,
+            "negative_samples": 23848,
+            "total_samples": 25596,
+            "positive_frequency": 0.068292,
+            "imbalance_ratio": 13.643
+        },
+        "all": {
+            "positive_samples": 5782,
+            "negative_samples": 106338,
+            "total_samples": 112120,
+            "positive_frequency": 0.05157,
+            "imbalance_ratio": 18.3912
+        }
+    },
+    "Nodule": {
+        "train": {
+            "positive_samples": 3808,
+            "negative_samples": 65779,
+            "total_samples": 69587,
+            "positive_frequency": 0.054723,
+            "imbalance_ratio": 17.2739
+        },
+        "val": {
+            "positive_samples": 900,
+            "negative_samples": 16037,
+            "total_samples": 16937,
+            "positive_frequency": 0.053138,
+            "imbalance_ratio": 17.8189
+        },
+        "test": {
+            "positive_samples": 1623,
+            "negative_samples": 23973,
+            "total_samples": 25596,
+            "positive_frequency": 0.063408,
+            "imbalance_ratio": 14.7708
+        },
+        "all": {
+            "positive_samples": 6331,
+            "negative_samples": 105789,
+            "total_samples": 112120,
+            "positive_frequency": 0.056466,
+            "imbalance_ratio": 16.7097
+        }
+    },
+    "Pleural_Thickening": {
+        "train": {
+            "positive_samples": 1774,
+            "negative_samples": 67813,
+            "total_samples": 69587,
+            "positive_frequency": 0.025493,
+            "imbalance_ratio": 38.226
+        },
+        "val": {
+            "positive_samples": 468,
+            "negative_samples": 16469,
+            "total_samples": 16937,
+            "positive_frequency": 0.027632,
+            "imbalance_ratio": 35.1902
+        },
+        "test": {
+            "positive_samples": 1143,
+            "negative_samples": 24453,
+            "total_samples": 25596,
+            "positive_frequency": 0.044655,
+            "imbalance_ratio": 21.3937
+        },
+        "all": {
+            "positive_samples": 3385,
+            "negative_samples": 108735,
+            "total_samples": 112120,
+            "positive_frequency": 0.030191,
+            "imbalance_ratio": 32.1226
+        }
+    },
+    "Pneumonia": {
+        "train": {
+            "positive_samples": 704,
+            "negative_samples": 68883,
+            "total_samples": 69587,
+            "positive_frequency": 0.010117,
+            "imbalance_ratio": 97.8452
+        },
+        "val": {
+            "positive_samples": 172,
+            "negative_samples": 16765,
+            "total_samples": 16937,
+            "positive_frequency": 0.010155,
+            "imbalance_ratio": 97.4709
+        },
+        "test": {
+            "positive_samples": 555,
+            "negative_samples": 25041,
+            "total_samples": 25596,
+            "positive_frequency": 0.021683,
+            "imbalance_ratio": 45.1189
+        },
+        "all": {
+            "positive_samples": 1431,
+            "negative_samples": 110689,
+            "total_samples": 112120,
+            "positive_frequency": 0.012763,
+            "imbalance_ratio": 77.3508
+        }
+    },
+    "Pneumothorax": {
+        "train": {
+            "positive_samples": 2137,
+            "negative_samples": 67450,
+            "total_samples": 69587,
+            "positive_frequency": 0.03071,
+            "imbalance_ratio": 31.5629
+        },
+        "val": {
+            "positive_samples": 500,
+            "negative_samples": 16437,
+            "total_samples": 16937,
+            "positive_frequency": 0.029521,
+            "imbalance_ratio": 32.874
+        },
+        "test": {
+            "positive_samples": 2665,
+            "negative_samples": 22931,
+            "total_samples": 25596,
+            "positive_frequency": 0.104118,
+            "imbalance_ratio": 8.6045
+        },
+        "all": {
+            "positive_samples": 5302,
+            "negative_samples": 106818,
+            "total_samples": 112120,
+            "positive_frequency": 0.047289,
+            "imbalance_ratio": 20.1467
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "total_images": 112120,
+    "train_images": 69587,
+    "validation_images": 16937,
+    "test_images": 25596,
+    "patients": 30805,
+    "num_classes": 14,
+    "image_size": [
+        224,
+        224
+    ]
+}

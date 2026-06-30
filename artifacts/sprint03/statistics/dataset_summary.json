@@ -1,0 +1,66 @@
+{
+    "schema_version": "v1",
+    "project": "VisionServeAI",
+    "sprint": "03",
+    "total_images": 112120,
+    "train_images": 69587,
+    "val_images": 16937,
+    "test_images": 25596,
+    "total_patients": 30805,
+    "train_patients": 22406,
+    "val_patients": 5602,
+    "test_patients": 2797,
+    "image_size": [
+        224,
+        224
+    ],
+    "num_channels": 3,
+    "num_classes": 14,
+    "disease_names": [
+        "Atelectasis",
+        "Cardiomegaly",
+        "Consolidation",
+        "Edema",
+        "Effusion",
+        "Emphysema",
+        "Fibrosis",
+        "Hernia",
+        "Infiltration",
+        "Mass",
+        "Nodule",
+        "Pleural_Thickening",
+        "Pneumonia",
+        "Pneumothorax"
+    ],
+    "recommended_batch_size": 32,
+    "random_seed": 42,
+    "pos_weight_vector": [
+        9.483127,
+        50.35572,
+        29.150347,
+        62.549772,
+        9.002444,
+        58.476068,
+        69.218971,
+        604.104348,
+        5.228139,
+        20.46422,
+        17.273897,
+        38.226043,
+        97.84517,
+        31.562939
+    ],
+    "train_ratio_actual": 0.620648,
+    "val_ratio_actual": 0.151061,
+    "test_ratio_actual": 0.228291,
+    "imagenet_mean": [
+        0.485,
+        0.456,
+        0.406
+    ],
+    "imagenet_std": [
+        0.229,
+        0.224,
+        0.225
+    ]
+}
