@@ -1,0 +1,12 @@
+{
+  "epoch": 3,
+  "timestamp_utc": "2026-07-02T00:57:03Z",
+  "val_loss": 1.6709175109863281,
+  "val_macro_auroc": 0.4722362885232712,
+  "val_micro_auroc": 0.4465821747825458,
+  "val_f1_macro": 0.01868131868131868,
+  "train_lr_at_best": 9.755527298894293e-05,
+  "early_stopping_counter": 0,
+  "checkpoint_path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s34_smoke/best_model.pt",
+  "best_val_loss_confirmed": 1.6709175109863281
+}

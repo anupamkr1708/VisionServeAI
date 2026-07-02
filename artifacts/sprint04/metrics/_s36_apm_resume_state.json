@@ -1,0 +1,18 @@
+{
+  "current_epoch": 2,
+  "best_epoch": 1,
+  "latest_checkpoint": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_apm/last_model.pt",
+  "best_checkpoint": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_apm/best_model.pt",
+  "optimizer_saved": true,
+  "scheduler_saved": true,
+  "scaler_saved": true,
+  "current_learning_rate": 9.89084726566536e-05,
+  "best_val_auroc": 0.5416346783793693,
+  "best_val_loss": 1.6207603812217712,
+  "timestamp": "2026-07-02T00:58:30Z",
+  "config_hash": "d2721458f65a31f3",
+  "backbone": "densenet121",
+  "model_architecture": "ChestXrayClassifier",
+  "git_commit": null,
+  "sprint_version": "04"
+}

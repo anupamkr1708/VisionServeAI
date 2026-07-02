@@ -1,0 +1,11 @@
+{
+  "project": "VisionServeAI",
+  "sprint": "04",
+  "phase": "Phase 3 - Loss Engineering",
+  "reduction": "mean",
+  "use_class_weights": true,
+  "label_smoothing": 0.0,
+  "num_classes": 14,
+  "class_weights_path": "/kaggle/input/notebooks/anupsharma1730/sprint03-v2-final-frozen/visionserveai/sprint03/statistics/class_weights.json",
+  "loss_dir": "/kaggle/working/visionserveai/sprint04/loss"
+}

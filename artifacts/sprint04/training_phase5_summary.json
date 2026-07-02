@@ -1,0 +1,39 @@
+{
+  "project": "VisionServeAI",
+  "sprint": "04",
+  "phase": "Phase 5 - Training Loop",
+  "engineering_run": {
+    "num_epochs_run": 1,
+    "subset_batches": 4,
+    "epoch_summary": {
+      "epoch": 1,
+      "train_loss": 1.4024558067321777,
+      "train_samples_per_second": 28.317127874767483,
+      "train_lr": 9.89084726566536e-05,
+      "val_loss": 1.4298249185085297,
+      "val_macro_auroc": 0.632280125768294,
+      "val_micro_auroc": 0.6101075606618197,
+      "val_f1_macro": 0.05529829350362781,
+      "early_stopping_counter": 0,
+      "is_best": true,
+      "should_stop": false
+    },
+    "wall_clock_seconds": 7.625
+  },
+  "components": {
+    "trainer": "Trainer",
+    "epoch_engine": "train_one_epoch / EpochResult",
+    "validation_engine": "validate_one_epoch / ValidationResult",
+    "metrics_engine": "compute_metrics / MetricsResult",
+    "early_stopping": "EarlyStopping",
+    "data_bridge": "ChestXrayManifestDataset / build_dataloaders"
+  },
+  "resume_verification": {
+    "model_state_equal_after_reload": true,
+    "epoch_equal_after_reload": true,
+    "early_stopping_state_restored": true
+  },
+  "checks_passed": 19,
+  "checks_total": 19,
+  "all_passed": true
+}

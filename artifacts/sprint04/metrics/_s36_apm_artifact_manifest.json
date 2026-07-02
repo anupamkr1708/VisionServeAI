@@ -1,0 +1,67 @@
+{
+  "generated_at_utc": "2026-07-02T00:58:30Z",
+  "current_epoch": 2,
+  "config_hash": "d2721458f65a31f3",
+  "backbone": "densenet121",
+  "model_architecture": "ChestXrayClassifier",
+  "git_commit": null,
+  "sprint_version": "04",
+  "artifacts": {
+    "EpochLogger": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/_s36__s36_run_apm_epoch_logs.json",
+      "exists": true,
+      "size_bytes": 1375,
+      "modified_at_utc": "2026-07-02T00:58:30Z",
+      "validation_status": "present"
+    },
+    "TrainingHistoryManager": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/_s36__s36_run_apm_training_history.json",
+      "exists": true,
+      "size_bytes": 1414,
+      "modified_at_utc": "2026-07-02T00:58:30Z",
+      "validation_status": "present"
+    },
+    "BestModelManager": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/_s36__s36_run_apm_best_model_metadata.json",
+      "exists": true,
+      "size_bytes": 441,
+      "modified_at_utc": "2026-07-02T00:58:27Z",
+      "validation_status": "present"
+    },
+    "LastCheckpointManager": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/_s36__s36_run_apm_checkpoint_summary.json",
+      "exists": true,
+      "size_bytes": 704,
+      "modified_at_utc": "2026-07-02T00:58:30Z",
+      "validation_status": "present"
+    },
+    "last_checkpoint": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_apm/last_model.pt",
+      "exists": true,
+      "size_bytes": 28617966,
+      "modified_at_utc": "2026-07-02T00:58:30Z",
+      "validation_status": "torch_verified_this_epoch"
+    },
+    "best_checkpoint": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_apm/best_model.pt",
+      "exists": true,
+      "size_bytes": 28617838,
+      "modified_at_utc": "2026-07-02T00:58:26Z",
+      "validation_status": "present"
+    },
+    "resume_state": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/_s36_apm_resume_state.json",
+      "exists": true,
+      "size_bytes": 656,
+      "modified_at_utc": "2026-07-02T00:58:27Z",
+      "validation_status": "present"
+    },
+    "artifact_manifest": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/_s36_apm_artifact_manifest.json",
+      "exists": true,
+      "size_bytes": 2381,
+      "modified_at_utc": "2026-07-02T00:58:27Z",
+      "validation_status": "present"
+    }
+  }
+}

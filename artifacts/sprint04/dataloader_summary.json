@@ -1,0 +1,45 @@
+{
+  "project": "VisionServeAI",
+  "sprint": "04",
+  "phase": "Phase 5 - Training Loop",
+  "image_roots": [
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_001/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_002/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_003/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_004/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_005/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_006/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_007/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_008/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_009/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_010/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_011/images",
+    "/kaggle/input/datasets/organizations/nih-chest-xrays/data/images_012/images"
+  ],
+  "splits": {
+    "train": {
+      "manifest_path": "/kaggle/input/notebooks/anupsharma1730/sprint03-v2-final-frozen/visionserveai/sprint03/manifests/train_manifest.parquet",
+      "num_samples": 69587,
+      "num_batches": 2174,
+      "batch_size": 32,
+      "shuffle": true
+    },
+    "val": {
+      "manifest_path": "/kaggle/input/notebooks/anupsharma1730/sprint03-v2-final-frozen/visionserveai/sprint03/manifests/val_manifest.parquet",
+      "num_samples": 16937,
+      "num_batches": 530,
+      "batch_size": 32,
+      "shuffle": false
+    },
+    "test": {
+      "manifest_path": "/kaggle/input/notebooks/anupsharma1730/sprint03-v2-final-frozen/visionserveai/sprint03/manifests/test_manifest.parquet",
+      "num_samples": 25596,
+      "num_batches": 800,
+      "batch_size": 32,
+      "shuffle": false
+    }
+  },
+  "num_workers": 4,
+  "pin_memory": true,
+  "persistent_workers": true
+}

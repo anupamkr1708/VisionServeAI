@@ -1,0 +1,40 @@
+[
+  {
+    "epoch": 1,
+    "timestamp_utc": "2026-07-02T00:58:13Z",
+    "elapsed_seconds": 3.236,
+    "train_loss": 1.673708200454712,
+    "val_loss": 1.6536080837249756,
+    "val_macro_auroc": 0.49757082130339114,
+    "val_micro_auroc": 0.4763029178613594,
+    "val_f1_macro": 0.03751164596273292,
+    "train_lr": 9.972636867364526e-05,
+    "train_samples_per_second": 41.67121993459228,
+    "early_stopping_counter": 0,
+    "early_stopping_patience": 99,
+    "is_best": true,
+    "should_stop": false,
+    "best_loss_so_far": 1.6536080837249756,
+    "best_epoch_so_far": 1,
+    "last_checkpoint_path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_a/last_model.pt"
+  },
+  {
+    "epoch": 2,
+    "timestamp_utc": "2026-07-02T00:58:17Z",
+    "elapsed_seconds": 6.401,
+    "train_loss": 1.5883651971817017,
+    "val_loss": 1.6380595564842224,
+    "val_macro_auroc": 0.6214030804366952,
+    "val_micro_auroc": 0.43636604582801247,
+    "val_f1_macro": 0.04135579358836188,
+    "train_lr": 9.89084726566536e-05,
+    "train_samples_per_second": 42.64692076362221,
+    "early_stopping_counter": 0,
+    "early_stopping_patience": 99,
+    "is_best": true,
+    "should_stop": false,
+    "best_loss_so_far": 1.6380595564842224,
+    "best_epoch_so_far": 2,
+    "last_checkpoint_path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_a/last_model.pt"
+  }
+]

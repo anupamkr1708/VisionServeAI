@@ -1,0 +1,42 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 1.5467891097068787,
+    "train_samples_per_second": 41.63368868256086,
+    "train_lr": 9.972636867364526e-05,
+    "val_loss": 1.6207603812217712,
+    "val_macro_auroc": 0.5416346783793693,
+    "val_micro_auroc": 0.5649109702913042,
+    "val_f1_macro": 0.07864493873841397,
+    "early_stopping_counter": 0,
+    "is_best": true,
+    "should_stop": false,
+    "last_checkpoint_path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_apm/last_model.pt",
+    "timestamp_utc": "2026-07-02T00:58:27Z",
+    "best_loss_so_far": 1.6207603812217712,
+    "best_epoch_so_far": 1,
+    "current_lr": 9.972636867364526e-05,
+    "es_counter": 0,
+    "es_patience": 99
+  },
+  {
+    "epoch": 2,
+    "train_loss": 1.5487492680549622,
+    "train_samples_per_second": 42.13408515894177,
+    "train_lr": 9.89084726566536e-05,
+    "val_loss": 1.6447451710700989,
+    "val_macro_auroc": 0.46565125289988907,
+    "val_micro_auroc": 0.5234802303447944,
+    "val_f1_macro": 0.04684678028382496,
+    "early_stopping_counter": 1,
+    "is_best": false,
+    "should_stop": false,
+    "last_checkpoint_path": "/kaggle/working/visionserveai/sprint04/checkpoints/_s36_run_apm/last_model.pt",
+    "timestamp_utc": "2026-07-02T00:58:30Z",
+    "best_loss_so_far": 1.6207603812217712,
+    "best_epoch_so_far": 1,
+    "current_lr": 9.89084726566536e-05,
+    "es_counter": 1,
+    "es_patience": 99
+  }
+]

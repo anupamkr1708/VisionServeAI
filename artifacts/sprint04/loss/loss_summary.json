@@ -1,0 +1,45 @@
+{
+  "project": "VisionServeAI",
+  "sprint": "04",
+  "phase": "Phase 3 - Loss Engineering",
+  "loss_configuration": {
+    "reduction": "mean",
+    "use_class_weights": true,
+    "label_smoothing": 0.0
+  },
+  "comparison": {
+    "unweighted_bce_loss": 0.699375,
+    "weighted_bce_loss": 25.211515,
+    "absolute_difference": 24.51214,
+    "ratio_weighted_over_unweighted": 36.0486
+  },
+  "rarest_classes_by_pos_weight": [
+    {
+      "name": "Hernia",
+      "pos_weight": 604.104
+    },
+    {
+      "name": "Pneumonia",
+      "pos_weight": 97.845
+    },
+    {
+      "name": "Fibrosis",
+      "pos_weight": 69.219
+    }
+  ],
+  "commonest_classes_by_pos_weight": [
+    {
+      "name": "Infiltration",
+      "pos_weight": 5.228
+    },
+    {
+      "name": "Effusion",
+      "pos_weight": 9.002
+    },
+    {
+      "name": "Atelectasis",
+      "pos_weight": 9.483
+    }
+  ],
+  "rationale": "Weighted BCE up-weights false negatives on rare classes (e.g. Hernia, pos_weight~604) proportionally to class imbalance, preventing the majority-negative collapse an unweighted criterion is prone to on NIH ChestXray14."
+}

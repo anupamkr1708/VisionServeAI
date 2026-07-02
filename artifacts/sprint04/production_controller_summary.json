@@ -1,0 +1,27 @@
+{
+  "project": "VisionServeAI",
+  "sprint": "04",
+  "phase": "Phase 6 - Production Training Pipeline",
+  "stage": 31,
+  "stage_name": "Production Training Controller",
+  "smoke_test": {
+    "subset_batches": 3,
+    "epochs_run": 3,
+    "wall_clock_seconds": 14.646,
+    "checks_passed": 17,
+    "checks_total": 17
+  },
+  "production_controller": {
+    "wired_to_real_singletons": true,
+    "train_samples": 69587,
+    "val_samples": 16937,
+    "configured_epochs": 30,
+    "early_stopping_patience": 7,
+    "launch_status": "constructed_not_run"
+  },
+  "extension_point": "register_callback(fn: Callable[[dict, Trainer], None])",
+  "migration": {
+    "ProductionTrainingController": "training/train.py",
+    "callback contract": "training/callbacks.py"
+  }
+}

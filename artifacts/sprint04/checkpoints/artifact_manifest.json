@@ -1,0 +1,67 @@
+{
+  "generated_at_utc": "2026-07-02T04:39:18Z",
+  "current_epoch": 17,
+  "config_hash": "d2721458f65a31f3",
+  "backbone": "densenet121",
+  "model_architecture": "ChestXrayClassifier",
+  "git_commit": null,
+  "sprint_version": "04",
+  "artifacts": {
+    "EpochLogger": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/epoch_logs.json",
+      "exists": true,
+      "size_bytes": 10815,
+      "modified_at_utc": "2026-07-02T04:39:18Z",
+      "validation_status": "present"
+    },
+    "TrainingHistoryManager": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/training_history.json",
+      "exists": true,
+      "size_bytes": 11857,
+      "modified_at_utc": "2026-07-02T04:39:18Z",
+      "validation_status": "present"
+    },
+    "BestModelManager": {
+      "path": "/kaggle/working/visionserveai/sprint04/metrics/best_model_metadata.json",
+      "exists": true,
+      "size_bytes": 428,
+      "modified_at_utc": "2026-07-02T02:59:43Z",
+      "validation_status": "present"
+    },
+    "LastCheckpointManager": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/checkpoint_summary.json",
+      "exists": true,
+      "size_bytes": 677,
+      "modified_at_utc": "2026-07-02T04:39:18Z",
+      "validation_status": "present"
+    },
+    "last_checkpoint": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/last_model.pt",
+      "exists": true,
+      "size_bytes": 28617966,
+      "modified_at_utc": "2026-07-02T04:39:18Z",
+      "validation_status": "torch_verified_this_epoch"
+    },
+    "best_checkpoint": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/best_model.pt",
+      "exists": true,
+      "size_bytes": 28617838,
+      "modified_at_utc": "2026-07-02T02:59:43Z",
+      "validation_status": "present"
+    },
+    "resume_state": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/resume_state.json",
+      "exists": true,
+      "size_bytes": 633,
+      "modified_at_utc": "2026-07-02T04:24:51Z",
+      "validation_status": "present"
+    },
+    "artifact_manifest": {
+      "path": "/kaggle/working/visionserveai/sprint04/checkpoints/artifact_manifest.json",
+      "exists": true,
+      "size_bytes": 2303,
+      "modified_at_utc": "2026-07-02T04:24:51Z",
+      "validation_status": "present"
+    }
+  }
+}

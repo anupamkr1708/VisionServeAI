@@ -1,0 +1,47 @@
+{
+  "project": "VisionServeAI",
+  "sprint": "04",
+  "pipeline_version": "1.0.0",
+  "phase": "Phase 6 - Production Training Pipeline",
+  "generated_at_utc": "2026-07-02T06:01:23Z",
+  "model": {
+    "model_name": "DenseNet121-ChestXray14",
+    "backbone": "densenet121",
+    "num_classes": 14,
+    "dropout": 0.3
+  },
+  "training": {
+    "configured_epochs": 30,
+    "epochs_trained": 17,
+    "early_stopped": true,
+    "best_epoch": 10,
+    "last_completed_epoch": 17,
+    "best_val_loss": 1.2928808805067944,
+    "best_val_macro_auroc": 0.6291324087507639,
+    "early_stopping_patience": 7
+  },
+  "hyperparameters": {
+    "learning_rate": 0.0001,
+    "weight_decay": 1e-05,
+    "batch_size": 32,
+    "gradient_clip": 1.0,
+    "use_amp": true,
+    "lr_scheduler": "cosine",
+    "random_seed": 42
+  },
+  "artifacts": {
+    "best_model.pt": "/kaggle/working/visionserveai/sprint04/checkpoints/best_model.pt",
+    "last_model.pt": "/kaggle/working/visionserveai/sprint04/checkpoints/last_model.pt",
+    "training_history.json": "/kaggle/working/visionserveai/sprint04/metrics/training_history.json",
+    "checkpoint_summary.json": "/kaggle/working/visionserveai/sprint04/checkpoints/checkpoint_summary.json",
+    "training_report.json": "/kaggle/working/visionserveai/sprint04/training_report.json",
+    "epoch_logs.json": "/kaggle/working/visionserveai/sprint04/metrics/epoch_logs.json",
+    "best_model_metadata.json": "/kaggle/working/visionserveai/sprint04/metrics/best_model_metadata.json"
+  },
+  "artifact_validation_passed": false,
+  "checkpoints": {
+    "best_model_pt": "/kaggle/working/visionserveai/sprint04/checkpoints/best_model.pt",
+    "last_model_pt": "/kaggle/working/visionserveai/sprint04/checkpoints/last_model.pt",
+    "checkpoint_dir": "/kaggle/working/visionserveai/sprint04/checkpoints"
+  }
+}
