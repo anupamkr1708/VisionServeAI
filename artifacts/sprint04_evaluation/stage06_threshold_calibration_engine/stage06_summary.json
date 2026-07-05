@@ -1,0 +1,28 @@
+{
+  "generated_at_utc": "2026-07-05T05:39:48.362989+00:00",
+  "n_samples": 25596,
+  "n_classes": 14,
+  "macro_ece": 0.2819920381767572,
+  "macro_mce": 0.35877962858267926,
+  "macro_brier_score": 0.2760408649903308,
+  "n_pathological_classes": 14,
+  "n_deploy_candidate_classes": 0,
+  "n_do_not_deploy_classes": 14,
+  "n_review_required_classes": 0,
+  "source_artifacts_consumed": {
+    "predictions_parquet": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/predictions.parquet",
+    "raw_logits_pt": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/raw_logits.pt",
+    "prediction_metadata": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/prediction_metadata.json",
+    "per_class_metrics_csv": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/per_class_metrics.csv",
+    "evaluation_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/evaluation_metrics.json"
+  },
+  "output_artifacts": {
+    "optimal_thresholds_csv": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/optimal_thresholds.csv",
+    "roc_pr_threshold_curves_csv": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/roc_pr_threshold_curves.csv",
+    "calibration_summary_csv": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/calibration_summary.csv",
+    "probability_distribution_summary_csv": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/probability_distribution_summary.csv",
+    "pathology_report_csv": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/pathology_report.csv",
+    "deployment_recommendations_csv": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/deployment_recommendations.csv"
+  },
+  "warnings": []
+}

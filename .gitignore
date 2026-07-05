@@ -1,0 +1,7 @@
+# Evaluation outputs
+artifacts/sprint04_evaluation/stage07_interpretability_engine/**
+
+
+# Logs
+logs/
+*.log

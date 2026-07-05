@@ -1,0 +1,55 @@
+{
+  "generated_at_utc": "2026-07-05T07:04:55.500577+00:00",
+  "threshold_limitations": [
+    "Headline precision/recall/F1/accuracy in evaluation_metrics.json use a single fixed operating threshold of 0.5 for every class, while Stage 6 computes a distinct balanced-accuracy-optimal threshold per class (see optimal_thresholds.csv). Any deployment should use the per-class thresholds, not 0.5."
+  ],
+  "dataset_limitations": [
+    "Evaluation is limited to a single frozen test split of 25596 samples from one public dataset; no external or multi-institution cohort was evaluated.",
+    "The underlying chest X-ray label set is the standard NIH ChestXray14 labeling scheme, whose known text-mining label-extraction caveats (as documented publicly for this dataset) are inherited unchanged by this evaluation."
+  ],
+  "class_imbalance": {
+    "lowest_support_classes": [
+      {
+        "class_name": "Hernia",
+        "support": 86
+      },
+      {
+        "class_name": "Fibrosis",
+        "support": 435
+      },
+      {
+        "class_name": "Pneumonia",
+        "support": 555
+      }
+    ],
+    "note": "Classes with low positive support have wider-variance AUROC/ECE estimates and should be interpreted with additional caution."
+  },
+  "calibration_limitations": {
+    "worst_calibrated_classes": [
+      {
+        "class_name": "Edema",
+        "ece": 0.9631707093792374,
+        "mce": 0.963743674717273
+      },
+      {
+        "class_name": "Consolidation",
+        "ece": 0.9290693987950924,
+        "mce": 0.9290693987950924
+      },
+      {
+        "class_name": "Infiltration",
+        "ece": 0.7611899368556929,
+        "mce": 0.9118099808692932
+      }
+    ],
+    "note": "Macro ECE=0.2819920381767572, macro MCE=0.35877962858267926; per-class calibration is uneven and should be re-checked before any probability output is shown to an end user as a literal risk percentage."
+  },
+  "interpretability_limitations": [
+    "Only 119 of 25596 test samples received attribution maps (bounded by max_total_samples=150 in Stage 7's configuration) \u2014 attribution quality has not been assessed across the full test set.",
+    "Rare-disease failure sampling captured 5 case(s) under reason(s) ['rare_disease_failure(Pneumonia)'], which is too small a sample to draw statistically robust conclusions about rare-class failure modes.",
+    "Attribution maps (Grad-CAM family, Guided Backprop, Integrated Gradients, Occlusion) have not been quantitatively validated against radiologist-annotated regions of interest."
+  ],
+  "reproducibility_limitations": [
+    "cuDNN determinism and a fixed random seed are enforced, but exact bit-for-bit reproducibility across different GPU models/driver versions is not guaranteed."
+  ]
+}

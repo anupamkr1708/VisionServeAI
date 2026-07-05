@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-07-05T05:39:47.482220+00:00",
+  "auroc_macro": 0.46394449390805065,
+  "average_precision_macro": 0.0727879207840584,
+  "precision_macro": 0.027629504481134246,
+  "recall_macro": 0.26386476012294535,
+  "sensitivity_macro": 0.26386476012294535,
+  "specificity_macro": 0.73513976653238,
+  "f1_macro": 0.04750639120267578,
+  "accuracy_macro": 0.7128066885450852,
+  "mcc_macro": -0.0005616525689169788,
+  "balanced_accuracy_macro": 0.4995022633276626,
+  "jaccard_macro": 0.027577587432661137,
+  "n_classes_excluded_from_auroc": 0,
+  "excluded_classes_auroc": []
+}

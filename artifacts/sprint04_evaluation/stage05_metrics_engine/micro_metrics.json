@@ -1,0 +1,14 @@
+{
+  "generated_at_utc": "2026-07-05T05:39:47.482220+00:00",
+  "auroc_micro": 0.584349289971795,
+  "precision_micro": 0.10110015174506828,
+  "recall_micro": 0.35264279938248916,
+  "sensitivity_micro": 0.35264279938248916,
+  "specificity_micro": 0.7423974294704927,
+  "f1_micro": 0.15714730307447872,
+  "accuracy_micro": 0.7128066885450852,
+  "mcc_global_flattened": 0.057052269451862016,
+  "balanced_accuracy_global_flattened": 0.547520114426491,
+  "jaccard_micro": 0.08527393607565684,
+  "note": "mcc_global_flattened and balanced_accuracy_global_flattened treat every (sample, class) cell as one independent binary decision \u2014 sklearn has no native multilabel 'micro' aggregation for MCC or balanced accuracy."
+}

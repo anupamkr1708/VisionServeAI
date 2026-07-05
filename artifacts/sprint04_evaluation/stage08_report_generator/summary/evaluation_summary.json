@@ -1,0 +1,17 @@
+{
+  "generated_at_utc": "2026-07-05T07:04:55.502351+00:00",
+  "auroc_macro": 0.46394449390805065,
+  "auroc_micro": 0.584349289971795,
+  "f1_macro": 0.04750639120267578,
+  "accuracy_subset": 0.0001562744178777934,
+  "calibration": {
+    "macro_ece": 0.2819920381767572,
+    "macro_mce": 0.35877962858267926
+  },
+  "interpretability": {
+    "n_samples_selected": 119,
+    "n_methods": 7
+  },
+  "overall_engineering_status": "UNHEALTHY",
+  "deployment_recommendation": "DO_NOT_DEPLOY"
+}

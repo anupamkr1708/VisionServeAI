@@ -1,0 +1,55 @@
+{
+  "generated_at_utc": "2026-07-05T05:39:47.482220+00:00",
+  "notebook": "Sprint04_Evaluation.ipynb",
+  "stage": "Stage 5 \u2014 Metrics Engine",
+  "threshold": 0.5,
+  "n_samples": 25596,
+  "n_classes": 14,
+  "headline_metrics": {
+    "auroc_macro": 0.46394449390805065,
+    "auroc_micro": 0.584349289971795,
+    "auroc_weighted": 0.48197892142198034,
+    "f1_macro": 0.04750639120267578,
+    "f1_micro": 0.15714730307447872,
+    "subset_accuracy": 0.0001562744178777934,
+    "hamming_loss": 0.28719331145491483,
+    "mcc_macro": -0.0005616525689169788,
+    "balanced_accuracy_macro": 0.4995022633276626
+  },
+  "ranking_metrics_applicability": {
+    "n_samples_total": 25596,
+    "n_samples_eligible": 15735,
+    "n_samples_excluded": 9861,
+    "exclusion_reason": "row has all-zero or all-one label vector; LRAP / coverage error / label ranking loss are mathematically undefined for such rows",
+    "applicable": true,
+    "label_ranking_average_precision": 0.2777575840934694,
+    "coverage_error": 7.615125516364792,
+    "label_ranking_loss": 0.4089408749360404
+  },
+  "training_vs_test_comparison": {
+    "note": "Informational only \u2014 validation-split performance from training is NOT expected to equal held-out test-split performance computed here, and a mismatch is not a validation failure.",
+    "val_macro_auroc": 0.6291324087507639,
+    "test_macro_auroc": 0.46394449390805065,
+    "val_micro_auroc": 0.6705190176745871,
+    "test_micro_auroc": 0.584349289971795,
+    "val_f1_macro": 0.10453434940588395,
+    "test_f1_macro": 0.04750639120267578
+  },
+  "source_artifacts_consumed": {
+    "predictions_parquet": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/predictions.parquet",
+    "raw_logits_pt": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/raw_logits.pt",
+    "prediction_metadata": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/prediction_metadata.json",
+    "dataset_summary": "/kaggle/working/sprint04_evaluation/stage03_dataset_builder/dataset_summary.json",
+    "artifact_validation": "/kaggle/working/sprint04_evaluation/stage02_artifact_loader/artifact_validation.json",
+    "training_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/training_summary.json",
+    "best_model_metadata": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/metrics/best_model_metadata.json"
+  },
+  "output_artifacts": {
+    "evaluation_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/evaluation_metrics.json",
+    "macro_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/macro_metrics.json",
+    "micro_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/micro_metrics.json",
+    "weighted_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/weighted_metrics.json",
+    "per_class_metrics_csv": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/per_class_metrics.csv"
+  },
+  "warnings": []
+}

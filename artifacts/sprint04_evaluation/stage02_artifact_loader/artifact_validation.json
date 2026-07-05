@@ -1,0 +1,77 @@
+{
+  "generated_at_utc": "2026-07-05T05:30:04.106404+00:00",
+  "artifacts_root": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04",
+  "registry_root": "/kaggle/input/datasets/anupsharma1730/visionserveai-training-artifacts-v1/visionserveai/sprint03",
+  "resolved_paths": {
+    "best_model": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/checkpoints/best_model.pt",
+    "last_model": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/checkpoints/last_model.pt",
+    "checkpoint_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/checkpoints/checkpoint_summary.json",
+    "training_history": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/metrics/training_history.json",
+    "best_model_metadata": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/metrics/best_model_metadata.json",
+    "training_report": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/training_report.json",
+    "training_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/training_summary.json",
+    "dataloader_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/dataloader_summary.json",
+    "early_stopping_config": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/early_stopping_config.json",
+    "production_controller_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/production_controller_summary.json",
+    "engineering_verification_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/engineering_verification_summary.json",
+    "disease_registry": "/kaggle/input/datasets/anupsharma1730/visionserveai-training-artifacts-v1/visionserveai/sprint03/registry/disease_registry.json",
+    "test_manifest": "/kaggle/input/datasets/anupsharma1730/visionserveai-training-artifacts-v1/visionserveai/sprint03/manifests/test_manifest.csv",
+    "train_manifest": "/kaggle/input/datasets/anupsharma1730/visionserveai-training-artifacts-v1/visionserveai/sprint03/manifests/train_manifest.csv",
+    "val_manifest": "/kaggle/input/datasets/anupsharma1730/visionserveai-training-artifacts-v1/visionserveai/sprint03/manifests/val_manifest.csv"
+  },
+  "missing_required": [],
+  "missing_optional": [],
+  "corrupted": [],
+  "resolution_notes": [],
+  "class_count_consistency": {
+    "disease_registry": 14,
+    "training_summary_model": 14,
+    "consistent": true
+  },
+  "checkpoint_compatibility": {
+    "checkpoint_path": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/checkpoints/best_model.pt",
+    "architecture": "densenet121 + Linear(14)",
+    "expected_param_count": 6968206,
+    "load_transform_used": "as-is",
+    "attempts": [
+      {
+        "transform": "as-is",
+        "result": "success"
+      }
+    ],
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "checkpoint_top_level_keys": [
+      "model_state_dict",
+      "optimizer_state_dict",
+      "scheduler_state_dict",
+      "scaler_state_dict",
+      "epoch",
+      "best_metric",
+      "config"
+    ],
+    "param_count_loaded": 7051975,
+    "param_counts_match": false
+  },
+  "metadata_cross_check": {
+    "epoch": {
+      "best_model_metadata": 10,
+      "training_summary": 10,
+      "match": true
+    },
+    "val_macro_auroc": {
+      "best_model_metadata": 0.6291324087507639,
+      "training_summary": 0.6291324087507639,
+      "match": true
+    },
+    "val_loss": {
+      "best_model_metadata": 1.2928808805067944,
+      "training_summary": 1.2928808805067944,
+      "match": true
+    }
+  },
+  "warnings": [
+    "training_summary.json self-reports artifact_validation_passed=False. Proceeding with Stage 2's OWN independent validation below \u2014 this is informational, not a pass-through of the training pipeline's verdict.",
+    "Loaded param count 7051975 != model param count 6968206 (dropout layers have 0 params so this is usually fine, but flagging for audit)."
+  ]
+}

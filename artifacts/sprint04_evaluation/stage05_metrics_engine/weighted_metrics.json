@@ -1,0 +1,12 @@
+{
+  "generated_at_utc": "2026-07-05T05:39:47.482220+00:00",
+  "auroc_weighted": 0.48197892142198034,
+  "average_precision_weighted": 0.1272186040367855,
+  "precision_weighted": 0.061214508907408434,
+  "recall_weighted": 0.35264279938248916,
+  "sensitivity_weighted": 0.35264279938248916,
+  "specificity_weighted": 0.6468030764639846,
+  "f1_weighted": 0.1008561952256948,
+  "jaccard_weighted": 0.06118594937835423,
+  "weighting_basis": "per-class support (positive count) in the ground-truth test set"
+}

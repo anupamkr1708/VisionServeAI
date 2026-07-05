@@ -1,0 +1,40 @@
+{
+  "generated_at_utc": "2026-07-05T07:04:55.501418+00:00",
+  "engineering_improvements": [
+    "Persist each stage's own StageTimer duration into its JSON summary so Stage 8's runtime_summary.json does not have to leave Stages 1/2/3/5/6 execution time as 'unavailable'.",
+    "Add a lightweight schema-version field to every stage's summary JSON to make future cross-stage compatibility checks (like the ones in Stage 8) explicit rather than implicit."
+  ],
+  "training_improvements": [
+    "Investigate and, if needed, retrain/fine-tune specifically for the classes flagged DO_NOT_DEPLOY: ['Atelectasis', 'Cardiomegaly', 'Consolidation', 'Edema', 'Effusion', 'Emphysema', 'Fibrosis', 'Hernia', 'Infiltration', 'Mass', 'Nodule', 'Pleural_Thickening', 'Pneumonia', 'Pneumothorax'].",
+    "Consider post-hoc calibration (e.g. temperature scaling) focused on the worst-calibrated class (Edema)."
+  ],
+  "deployment_improvements": [
+    "Switch production inference from the fixed 0.5 threshold to the per-class optimal thresholds already computed in optimal_thresholds.csv."
+  ],
+  "research_improvements": [
+    "Run an external-cohort validation study to test generalization beyond the current single-dataset test split.",
+    "Run a quantitative attribution-agreement study between explainability heatmaps and radiologist-marked regions of interest."
+  ],
+  "future_experiments": [
+    "Class-balanced fine-tuning or focal-loss retraining for the lowest-support classes.",
+    "Expand the explainability sample pool beyond the current bounded cap to improve statistical confidence in rare-class failure-mode analysis."
+  ],
+  "prioritized": [
+    {
+      "priority": "P0",
+      "item": "Fix or retrain for DO_NOT_DEPLOY classes: ['Atelectasis', 'Cardiomegaly', 'Consolidation', 'Edema', 'Effusion', 'Emphysema', 'Fibrosis', 'Hernia', 'Infiltration', 'Mass', 'Nodule', 'Pleural_Thickening', 'Pneumonia', 'Pneumothorax']"
+    },
+    {
+      "priority": "P1",
+      "item": "Adopt per-class optimal thresholds in place of the fixed 0.5 cut-off."
+    },
+    {
+      "priority": "P2",
+      "item": "Recalibrate probabilities for Edema."
+    },
+    {
+      "priority": "P2",
+      "item": "Pursue external-cohort validation before broader deployment."
+    }
+  ]
+}

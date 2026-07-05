@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-07-05T07:04:55.493693+00:00",
+  "gpu": {
+    "stage1_device": {
+      "selected": "cuda",
+      "backend": "cuda",
+      "device_name": "Tesla T4",
+      "total_memory_gb": 14.56,
+      "cuda_capability": "7.5",
+      "cuda_version": "12.8",
+      "cudnn_version": 91002
+    },
+    "stage4_inference_device": {
+      "backend": "cuda",
+      "device_name": "Tesla T4",
+      "total_memory_gb": 14.56,
+      "cuda_capability": "7.5"
+    },
+    "stage4_peak_gpu_allocated_mb": 320.44,
+    "stage4_gpu_utilization_pct": 0,
+    "stage7_device": "cuda",
+    "stage7_gpu_memory_before_mb": 36.13,
+    "stage7_gpu_memory_after_mb": 107.85
+  },
+  "cpu": {
+    "stage4_cpu_maxrss_mb": 1784.5
+  },
+  "execution_time_sec": {
+    "stage4_total_inference_time_sec": 279.474,
+    "stage7_total_processing_time_sec": 466.5,
+    "note": "Stages 1, 2, 3, 5, 6 log their duration via StageTimer but do not persist it into their JSON artifacts, so only Stage 4 and Stage 7 durations are available here without touching per-stage log files."
+  },
+  "dataset_size": {
+    "n_samples_total_manifest": 25596,
+    "n_samples_usable": 25596,
+    "n_classes": 14
+  },
+  "n_inference_samples": 25596,
+  "n_explainability_samples": 119,
+  "png_counts_by_method": {
+    "gradcam": 119,
+    "gradcam_plus": 119,
+    "scorecam": 119,
+    "eigencam": 119,
+    "guided_backprop": 119,
+    "integrated_gradients": 119,
+    "occlusion": 119,
+    "error_gallery_correct": 40,
+    "error_gallery_incorrect": 79
+  },
+  "total_png_count": 952,
+  "stage7_reported_method_success_counts": {
+    "gradcam": 119,
+    "gradcam_plus": 119,
+    "scorecam": 119,
+    "eigencam": 119,
+    "guided_backprop": 119,
+    "integrated_gradients": 119,
+    "occlusion": 119
+  },
+  "artifact_count_inventoried": 35,
+  "disk_usage_bytes_stage01_to_07": 243831739,
+  "disk_usage_mb_stage01_to_07": 232.54,
+  "n_files_on_disk_stage01_to_07": 996
+}

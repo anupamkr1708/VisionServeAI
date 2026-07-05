@@ -1,0 +1,47 @@
+{
+  "n_samples": 25596,
+  "n_unique_patients": 2797,
+  "label_cardinality_histogram": {
+    "0": 9861,
+    "1": 7992,
+    "2": 5021,
+    "3": 1958,
+    "4": 572,
+    "5": 152,
+    "6": 31,
+    "7": 8,
+    "8": 1
+  },
+  "mean_labels_per_sample": 1.062900453195812,
+  "view_position_counts": {
+    "AP": 14500,
+    "PA": 11096
+  },
+  "gender_counts": {
+    "M": 14882,
+    "F": 10714
+  },
+  "age_stats": {
+    "min": 1.0,
+    "max": 414.0,
+    "mean": 47.00757930926707,
+    "median": 49.0
+  },
+  "class_prevalence": {
+    "Atelectasis": 0.12810595405532113,
+    "Cardiomegaly": 0.04176433817784029,
+    "Consolidation": 0.07090951711204876,
+    "Edema": 0.03613845913423973,
+    "Effusion": 0.18198155961869042,
+    "Emphysema": 0.042701984685107046,
+    "Fibrosis": 0.016994842944210033,
+    "Hernia": 0.0033598999843725583,
+    "Infiltration": 0.23878731051726831,
+    "Mass": 0.06829192061259572,
+    "Nodule": 0.06340834505391467,
+    "Pleural_Thickening": 0.044655414908579466,
+    "Pneumonia": 0.021683075480543833,
+    "Pneumothorax": 0.10411783091107986
+  },
+  "zero_positive_classes": []
+}

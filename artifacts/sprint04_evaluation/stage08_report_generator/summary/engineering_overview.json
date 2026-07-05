@@ -1,0 +1,819 @@
+{
+  "generated_at_utc": "2026-07-05T07:04:55.476381+00:00",
+  "per_stage_counts": {
+    "stage01_environment": {
+      "PASS": 4,
+      "FAIL": 0,
+      "WARNING": 0,
+      "UNKNOWN": 0
+    },
+    "stage02_artifact_loader": {
+      "PASS": 6,
+      "FAIL": 1,
+      "WARNING": 2,
+      "UNKNOWN": 0
+    },
+    "stage03_dataset_builder": {
+      "PASS": 4,
+      "FAIL": 0,
+      "WARNING": 1,
+      "UNKNOWN": 0
+    },
+    "stage04_inference_engine": {
+      "PASS": 27,
+      "FAIL": 0,
+      "WARNING": 0,
+      "UNKNOWN": 0
+    },
+    "stage05_metrics_engine": {
+      "PASS": 27,
+      "FAIL": 0,
+      "WARNING": 0,
+      "UNKNOWN": 0
+    },
+    "stage06_threshold_calibration_engine": {
+      "PASS": 22,
+      "FAIL": 0,
+      "WARNING": 0,
+      "UNKNOWN": 0
+    },
+    "stage07_interpretability_engine": {
+      "PASS": 33,
+      "FAIL": 0,
+      "WARNING": 0,
+      "UNKNOWN": 0
+    }
+  },
+  "totals": {
+    "n_checks": 127,
+    "PASS": 123,
+    "FAIL": 1,
+    "WARNING": 3,
+    "UNKNOWN": 0
+  },
+  "overall_engineering_health": "UNHEALTHY",
+  "checks": [
+    {
+      "stage": "stage01_environment",
+      "check": "hard_requirements_satisfied",
+      "status": "PASS",
+      "detail": "hard_missing=[]"
+    },
+    {
+      "stage": "stage01_environment",
+      "check": "all_dataset_roles_discovered",
+      "status": "PASS",
+      "detail": "roles_found=['registry_manifests', 'artifacts', 'images']"
+    },
+    {
+      "stage": "stage01_environment",
+      "check": "device_resolved",
+      "status": "PASS",
+      "detail": "device=cuda"
+    },
+    {
+      "stage": "stage01_environment",
+      "check": "cudnn_determinism_enabled",
+      "status": "PASS",
+      "detail": "{'random_seed': 42, 'cuda_seeded': True, 'cudnn_deterministic': True, 'cudnn_benchmark': False}"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "no_missing_required_artifacts",
+      "status": "PASS",
+      "detail": "missing_required=[]"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "no_corrupted_artifacts",
+      "status": "PASS",
+      "detail": "corrupted=[]"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "class_count_consistent",
+      "status": "PASS",
+      "detail": "{'disease_registry': 14, 'training_summary_model': 14, 'consistent': True}"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "checkpoint_param_counts_match",
+      "status": "FAIL",
+      "detail": "{'checkpoint_path': '/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/checkpoints/best_model.pt', 'architecture': 'densenet121 + Linear(14)', 'expected_param_count': 6968206, 'load_transform_used': 'as-is', 'attempts': [{'transform': 'as-is', 'result': 'success'}], 'missing_keys': [], 'unexpected_keys': [], 'checkpoint_top_level_keys': ['model_state_dict', 'optimizer_state_dict', 'scheduler_state_dict', 'scaler_state_dict', 'epoch', 'best_metric', 'config'], 'param_count_loaded': 7051975, 'param_counts_match': False}"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "metadata_cross_check_epoch",
+      "status": "PASS",
+      "detail": "{'best_model_metadata': 10, 'training_summary': 10, 'match': True}"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "metadata_cross_check_val_macro_auroc",
+      "status": "PASS",
+      "detail": "{'best_model_metadata': 0.6291324087507639, 'training_summary': 0.6291324087507639, 'match': True}"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "metadata_cross_check_val_loss",
+      "status": "PASS",
+      "detail": "{'best_model_metadata': 1.2928808805067944, 'training_summary': 1.2928808805067944, 'match': True}"
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "stage2_runtime_warning_1",
+      "status": "WARNING",
+      "detail": "training_summary.json self-reports artifact_validation_passed=False. Proceeding with Stage 2's OWN independent validation below \u2014 this is informational, not a pass-through of the training pipeline's verdict."
+    },
+    {
+      "stage": "stage02_artifact_loader",
+      "check": "stage2_runtime_warning_2",
+      "status": "WARNING",
+      "detail": "Loaded param count 7051975 != model param count 6968206 (dropout layers have 0 params so this is usually fine, but flagging for audit)."
+    },
+    {
+      "stage": "stage03_dataset_builder",
+      "check": "no_duplicate_samples",
+      "status": "PASS",
+      "detail": "{'duplicate_image_index_count': 0, 'duplicate_full_row_count': 0}"
+    },
+    {
+      "stage": "stage03_dataset_builder",
+      "check": "no_missing_or_corrupted_images",
+      "status": "PASS",
+      "detail": "{'missing_files': [], 'missing_count': 0, 'header_check_failures': [], 'header_check_failure_count': 0, 'full_decode_sample_size': 1500, 'full_decode_failures': [], 'full_decode_failure_count': 0, 'distinct_decoded_pixel_sizes_sampled': 1, 'corruption_ratio': 0.0}"
+    },
+    {
+      "stage": "stage03_dataset_builder",
+      "check": "tensor_shapes_consistent",
+      "status": "PASS",
+      "detail": "{'sampled': 200, 'expected_shape': [3, 288, 288], 'consistent': True}"
+    },
+    {
+      "stage": "stage03_dataset_builder",
+      "check": "dataloader_smoke_test_ran",
+      "status": "PASS",
+      "detail": "[32, 3, 288, 288]"
+    },
+    {
+      "stage": "stage03_dataset_builder",
+      "check": "stage3_runtime_warning_1",
+      "status": "WARNING",
+      "detail": "No artifact (dataloader_summary/training_summary/checkpoint_summary/best_model_metadata) contains an explicit image_size+normalization block. Falling back to backbone 'densenet121''s own timm pretrained_cfg for the eval transform. This is the architecturally correct recipe for that backbone, but was not explicitly recorded by the training pipeline \u2014 flagging for audit."
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "class_names_count_matches_training_summary",
+      "status": "PASS",
+      "detail": "class_names=14 training_summary=14"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "dataset_non_empty",
+      "status": "PASS",
+      "detail": "n_samples=25596"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "architecture_backbone_registered",
+      "status": "PASS",
+      "detail": "backbone=densenet121"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "architecture_num_classes_positive",
+      "status": "PASS",
+      "detail": "num_classes=14"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "architecture_dropout_valid",
+      "status": "PASS",
+      "detail": "dropout=0.3"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "model_loaded",
+      "status": "PASS",
+      "detail": "backbone=densenet121 num_classes=14"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "checkpoint_transform_resolved",
+      "status": "PASS",
+      "detail": "attempts=[{'transform': 'as-is', 'missing': 0, 'unexpected': 0, 'shape_mismatches': 0}]"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "checkpoint_no_missing_tensors",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "checkpoint_no_unexpected_tensors",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "checkpoint_no_shape_mismatches",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "checkpoint_param_count_matches",
+      "status": "PASS",
+      "detail": "loaded=7051975 model=7051975"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "checkpoint_restored",
+      "status": "PASS",
+      "detail": "as-is"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "model_in_eval_mode",
+      "status": "PASS",
+      "detail": "model.training==False"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "gradients_disabled",
+      "status": "PASS",
+      "detail": "all parameters requires_grad=False"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "inference_reproducible",
+      "status": "PASS",
+      "detail": "two forward passes on sample[0] identical"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "deterministic_execution",
+      "status": "PASS",
+      "detail": "{'seed': 42, 'cudnn_deterministic': True, 'cudnn_benchmark': False}"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "prediction_count_equals_dataset_size",
+      "status": "PASS",
+      "detail": "predictions=25596 dataset=25596"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "logits_shape_correct",
+      "status": "PASS",
+      "detail": "shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "probabilities_shape_correct",
+      "status": "PASS",
+      "detail": "shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "predictions_shape_correct",
+      "status": "PASS",
+      "detail": "shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "ground_truth_shape_correct",
+      "status": "PASS",
+      "detail": "shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "no_nan_logits",
+      "status": "PASS",
+      "detail": "nan_count=0"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "no_nan_probabilities",
+      "status": "PASS",
+      "detail": "nan_count=0"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "no_infinite_values",
+      "status": "PASS",
+      "detail": "inf_logits=0 inf_probs=0"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "probabilities_in_unit_range",
+      "status": "PASS",
+      "detail": "min=0.000000 max=1.000000"
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "parquet_written",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "stage": "stage04_inference_engine",
+      "check": "csv_written",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "class_order_consistent",
+      "status": "PASS",
+      "detail": "dataset_summary vs prediction_metadata vs raw_logits.pt class name lists match exactly"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "class_count_matches_registry",
+      "status": "PASS",
+      "detail": "class_counts={'dataset_summary': 14, 'prediction_metadata': 14, 'training_summary_model': 14, 'disease_registry_via_stage2': 14, 'raw_logits_class_names': 14}"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "prediction_count_matches_stage4",
+      "status": "PASS",
+      "detail": "predictions.parquet_rows=25596 prediction_metadata.n_samples=25596 inference_summary.n_samples=25596"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "dataset_size_matches_stage3",
+      "status": "PASS",
+      "detail": "predictions.parquet_rows=25596 dataset_summary.n_samples_usable=25596"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "label_dimensions_correct",
+      "status": "PASS",
+      "detail": "ground_truth shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "probability_dimensions_correct",
+      "status": "PASS",
+      "detail": "probabilities shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "logit_dimensions_correct",
+      "status": "PASS",
+      "detail": "logits shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "prediction_dimensions_correct",
+      "status": "PASS",
+      "detail": "predictions shape=(25596, 14) expected=(25596, 14)"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "ground_truth_is_binary",
+      "status": "PASS",
+      "detail": "unique_values=[0.0, 1.0]"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "probabilities_in_unit_range",
+      "status": "PASS",
+      "detail": "min=0.000000 max=1.000000"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "no_nan_in_predictions",
+      "status": "PASS",
+      "detail": "checked ground_truth, probabilities, logits"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "no_inf_in_predictions",
+      "status": "PASS",
+      "detail": "checked probabilities, logits"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "raw_logits_shape_matches_parquet",
+      "status": "PASS",
+      "detail": "raw_logits.pt shape=(25596, 14) predictions.parquet shape=(25596, 14)"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "raw_logits_values_match_parquet",
+      "status": "PASS",
+      "detail": "max_abs_diff=0.00e+00"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "threshold_is_fixed_at_point_five",
+      "status": "PASS",
+      "detail": "prediction_metadata.threshold=0.5"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "stored_predictions_match_threshold_0.5",
+      "status": "PASS",
+      "detail": "recomputed (probabilities>=0.5) vs stored predictions column"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "all_headline_metrics_finite",
+      "status": "PASS",
+      "detail": "{'auroc_macro': 0.46394449390805065, 'f1_macro': 0.04750639120267578, 'precision_macro': 0.027629504481134246, 'recall_macro': 0.26386476012294535, 'specificity_macro': 0.73513976653238}"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "auroc_range_valid",
+      "status": "PASS",
+      "detail": "value=0.46394449390805065 expected_range=[0.0,1.0]"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "f1_range_valid",
+      "status": "PASS",
+      "detail": "value=0.04750639120267578 expected_range=[0.0,1.0]"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "precision_range_valid",
+      "status": "PASS",
+      "detail": "value=0.027629504481134246 expected_range=[0.0,1.0]"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "recall_range_valid",
+      "status": "PASS",
+      "detail": "value=0.26386476012294535 expected_range=[0.0,1.0]"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "artifact_written_evaluation_metrics",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/evaluation_metrics.json"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "artifact_written_macro_metrics",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/macro_metrics.json"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "artifact_written_micro_metrics",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/micro_metrics.json"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "artifact_written_weighted_metrics",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/weighted_metrics.json"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "artifact_written_per_class_metrics_csv",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/per_class_metrics.csv"
+    },
+    {
+      "stage": "stage05_metrics_engine",
+      "check": "artifact_written_evaluation_summary",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/evaluation_summary.json"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "class_order_consistent_stage4_stage5",
+      "status": "PASS",
+      "detail": "prediction_metadata vs raw_logits.pt vs per_class_metrics.csv vs evaluation_metrics.json class name lists match exactly"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "class_count_consistent",
+      "status": "PASS",
+      "detail": "pm=14 raw=14 csv=14 em=14"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "prediction_count_matches_metadata",
+      "status": "PASS",
+      "detail": "predictions.parquet_rows=25596 prediction_metadata.n_samples=25596 evaluation_metrics.n_samples=25596"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "array_shapes_correct",
+      "status": "PASS",
+      "detail": "ground_truth=(25596, 14) probabilities=(25596, 14) logits=(25596, 14) predictions=(25596, 14) expected=(25596,14)"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "ground_truth_is_binary",
+      "status": "PASS",
+      "detail": "unique_values=[0.0, 1.0]"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "probabilities_in_unit_range",
+      "status": "PASS",
+      "detail": "min=0.000000 max=1.000000"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "no_nan_reloaded_arrays",
+      "status": "PASS",
+      "detail": "checked ground_truth, probabilities, logits"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "no_inf_reloaded_arrays",
+      "status": "PASS",
+      "detail": "checked probabilities, logits"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "raw_logits_values_match_parquet",
+      "status": "PASS",
+      "detail": "max_abs_diff=0.00e+00"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "stored_predictions_match_threshold",
+      "status": "PASS",
+      "detail": "recomputed (probabilities>=0.5) vs stored predictions column"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "positive_counts_match_stage5",
+      "status": "PASS",
+      "detail": "recomputed=[3279, 1069, 1815, 925, 4658, 1093, 435, 86, 6112, 1748, 1623, 1143, 555, 2665] stage5_csv=[3279, 1069, 1815, 925, 4658, 1093, 435, 86, 6112, 1748, 1623, 1143, 555, 2665]"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "predicted_positive_counts_match_stage5",
+      "status": "PASS",
+      "detail": "recomputed=[0, 18108, 25596, 25595, 1, 0, 0, 0, 25596, 0, 0, 0, 0, 0] stage5_csv=[0, 18108, 25596, 25595, 1, 0, 0, 0, 25596, 0, 0, 0, 0, 0]"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "optimal_thresholds_in_unit_range",
+      "status": "PASS",
+      "detail": "all optimal thresholds must lie in [0,1]"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "calibration_metrics_finite",
+      "status": "PASS",
+      "detail": "ece/mce/brier must be finite for all classes"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "pathology_scan_completed",
+      "status": "PASS",
+      "detail": "14/14 classes flagged pathological"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "deployment_recommendations_generated",
+      "status": "PASS",
+      "detail": "14 recommendations for 14 classes"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "artifact_written_optimal_thresholds",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/optimal_thresholds.csv"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "artifact_written_roc_pr_threshold_curves",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/roc_pr_threshold_curves.csv"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "artifact_written_calibration_summary",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/calibration_summary.csv"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "artifact_written_probability_distribution_summary",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/probability_distribution_summary.csv"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "artifact_written_pathology_report",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/pathology_report.csv"
+    },
+    {
+      "stage": "stage06_threshold_calibration_engine",
+      "check": "artifact_written_deployment_recommendations",
+      "status": "PASS",
+      "detail": "/kaggle/working/sprint04_evaluation/stage06_threshold_calibration_engine/deployment_recommendations.csv"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "class_order_consistent_all_stages",
+      "status": "PASS",
+      "detail": "stage3/stage4(pm)/stage4(raw)/stage5(csv)/stage6(thr)/stage6(calib) class name lists match exactly"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "class_count_consistent",
+      "status": "PASS",
+      "detail": "stage3=14 pm=14 raw=14 csv=14"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "prediction_count_matches_metadata",
+      "status": "PASS",
+      "detail": "predictions.parquet_rows=25596 prediction_metadata.n_samples=25596"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "dataset_manifest_row_count_matches",
+      "status": "PASS",
+      "detail": "dataset_summary.csv_rows=25596 expected=25596"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "array_shapes_correct",
+      "status": "PASS",
+      "detail": "ground_truth=(25596, 14) probabilities=(25596, 14) expected=(25596,14)"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "no_nan_reloaded_arrays",
+      "status": "PASS",
+      "detail": "checked ground_truth, probabilities"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "probabilities_in_unit_range",
+      "status": "PASS",
+      "detail": "min=0.000000 max=1.000000"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "architecture_backbone_is_densenet121",
+      "status": "PASS",
+      "detail": "backbone=densenet121"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "architecture_num_classes_matches",
+      "status": "PASS",
+      "detail": "training_summary.num_classes=14 class_names=14"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "device_resolved",
+      "status": "PASS",
+      "detail": "device=cuda"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "model_constructed",
+      "status": "PASS",
+      "detail": "backbone=densenet121 num_classes=14"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "checkpoint_loads_successfully",
+      "status": "PASS",
+      "detail": "as-is"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "checkpoint_compatible_densenet121_backbone",
+      "status": "PASS",
+      "detail": "backbone=densenet121"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "checkpoint_num_classes_matches",
+      "status": "PASS",
+      "detail": "checkpoint_num_classes=14 class_names=14"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "model_in_eval_mode",
+      "status": "PASS",
+      "detail": "model.training==False"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "image_transforms_reconstructed",
+      "status": "PASS",
+      "detail": "image_size=(288, 288)"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "model_output_shape_correct",
+      "status": "PASS",
+      "detail": "output_shape=(1, 14) expected=(1,14)"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "no_nan_in_dummy_forward",
+      "status": "PASS",
+      "detail": "dummy forward pass produced no NaNs"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "gpu_availability_checked",
+      "status": "PASS",
+      "detail": "cuda_available=True device=cuda"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "gradcam_target_layer_exists",
+      "status": "PASS",
+      "detail": "layer=backbone.features.norm5 shape=(1, 1024, 9, 9)"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "sample_count_within_bounds",
+      "status": "PASS",
+      "detail": "n_selected=119 max=150"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "sample_pool_covers_all_classes",
+      "status": "PASS",
+      "detail": "classes_covered=14/14"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "model_stayed_in_eval_mode_after_processing",
+      "status": "PASS",
+      "detail": "model.training==False after full sample loop"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "pngs_written_nonzero",
+      "status": "PASS",
+      "detail": "n_png_written=833"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "gradcam_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "gradcam_plus_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "scorecam_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "eigencam_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "integrated_gradients_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "guided_backprop_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "occlusion_generated_for_some_samples",
+      "status": "PASS",
+      "detail": "119/119 samples succeeded"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "no_empty_error_gallery",
+      "status": "PASS",
+      "detail": "n_rows=119"
+    },
+    {
+      "stage": "stage07_interpretability_engine",
+      "check": "sample_predictions_count_matches_selection",
+      "status": "PASS",
+      "detail": "119 vs 119"
+    }
+  ]
+}
