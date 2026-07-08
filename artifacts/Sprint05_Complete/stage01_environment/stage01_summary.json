@@ -1,0 +1,19 @@
+{
+  "stage": "stage01_environment",
+  "status": "OK",
+  "elapsed_seconds": 2.569,
+  "device": "cuda",
+  "gpu_name": "Tesla T4",
+  "cuda_version": "12.8",
+  "datasets_discovered": [
+    "datasets"
+  ],
+  "categories_resolved": {
+    "sprint03": true,
+    "sprint04_training": true,
+    "sprint04_evaluation": true,
+    "nih_chest_xray": true
+  },
+  "warnings_count": 0,
+  "output_directory": "/kaggle/working/sprint05_deployment/stage01_environment"
+}

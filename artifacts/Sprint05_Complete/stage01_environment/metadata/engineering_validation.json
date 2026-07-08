@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "dataset_found__sprint03": true,
+    "dataset_found__sprint04_training": true,
+    "dataset_found__sprint04_evaluation": true,
+    "dataset_found__nih_chest_xray": true,
+    "critical_file__sprint03__disease_registry.json": true,
+    "critical_file__sprint04_training__best_model.pt": true,
+    "critical_file__sprint04_training__training_summary.json": true,
+    "critical_file__sprint04_evaluation__evaluation_summary.json": true,
+    "critical_file__nih_chest_xray__Data_Entry_2017.csv": true,
+    "no_duplicate_datasets": true,
+    "gpu_available": true,
+    "cuda_compatibility": true,
+    "sufficient_disk_space": true,
+    "output_directory_writable": true,
+    "output_folder_exists__stage_root": true,
+    "output_folder_exists__logs": true,
+    "output_folder_exists__configs": true,
+    "output_folder_exists__metadata": true,
+    "output_folder_exists__artifacts": true
+  },
+  "warnings": [],
+  "fatal_errors": [],
+  "passed": true
+}

@@ -1,0 +1,24 @@
+{
+  "output_path": "/kaggle/working/sprint05_deployment/stage03_export/model.onnx",
+  "success": true,
+  "opset_version": 17,
+  "model_hash": "74ad647587bb8b8297072d03f1aed20ba5243899dd502a7e6dbdf8bfc6a59010",
+  "file_size_bytes": 1062588,
+  "checker_passed": true,
+  "input_names": [
+    "input"
+  ],
+  "output_names": [
+    "output"
+  ],
+  "dynamic_axes": {
+    "input": {
+      "0": "batch_size"
+    },
+    "output": {
+      "0": "batch_size"
+    }
+  },
+  "warnings": [],
+  "errors": []
+}

@@ -1,0 +1,181 @@
+{
+  "batch_sizes_requested": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "batch_sizes_tested": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "batch_sizes_skipped_oom": [],
+  "warmup_iterations": 3,
+  "measured_iterations": 15,
+  "results": [
+    {
+      "batch_size": 1,
+      "warm_latency": {
+        "count": 15,
+        "mean_ms": 16.812283466727724,
+        "min_ms": 16.264474000308837,
+        "max_ms": 17.662355000084062,
+        "std_ms": 0.36906599869997125,
+        "p95_ms": 17.407293899987053
+      },
+      "cold_start_ms": 19.687360000261833,
+      "throughput_images_per_sec": 59.48031996837584,
+      "fps": 59.48031996837584,
+      "gpu_memory_allocated_mb": 36.12890625,
+      "gpu_memory_reserved_mb": 52.0,
+      "cpu_rss_mb": 1574.2578125,
+      "peak_gpu_memory_mb": 46.7431640625,
+      "result_count_correct": true,
+      "oom": false,
+      "error": null
+    },
+    {
+      "batch_size": 2,
+      "warm_latency": {
+        "count": 15,
+        "mean_ms": 19.72409113335137,
+        "min_ms": 18.5261569999966,
+        "max_ms": 21.23982500006605,
+        "std_ms": 0.6173796901396721,
+        "p95_ms": 20.49069130002863
+      },
+      "cold_start_ms": 20.141537000199605,
+      "throughput_images_per_sec": 101.39884197848843,
+      "fps": 101.39884197848843,
+      "gpu_memory_allocated_mb": 36.12890625,
+      "gpu_memory_reserved_mb": 72.0,
+      "cpu_rss_mb": 1574.2578125,
+      "peak_gpu_memory_mb": 58.25390625,
+      "result_count_correct": true,
+      "oom": false,
+      "error": null
+    },
+    {
+      "batch_size": 4,
+      "warm_latency": {
+        "count": 15,
+        "mean_ms": 23.024148066694277,
+        "min_ms": 22.12970300024608,
+        "max_ms": 23.753260999910708,
+        "std_ms": 0.43976165556009517,
+        "p95_ms": 23.68792300012501
+      },
+      "cold_start_ms": 26.15003800019622,
+      "throughput_images_per_sec": 173.73064090854353,
+      "fps": 173.73064090854353,
+      "gpu_memory_allocated_mb": 36.12890625,
+      "gpu_memory_reserved_mb": 86.0,
+      "cpu_rss_mb": 1574.2578125,
+      "peak_gpu_memory_mb": 78.47265625,
+      "result_count_correct": true,
+      "oom": false,
+      "error": null
+    },
+    {
+      "batch_size": 8,
+      "warm_latency": {
+        "count": 15,
+        "mean_ms": 40.5946757999421,
+        "min_ms": 40.028095000252506,
+        "max_ms": 41.32884799992098,
+        "std_ms": 0.3487795275506036,
+        "p95_ms": 41.18042979985148
+      },
+      "cold_start_ms": 41.35078600029374,
+      "throughput_images_per_sec": 197.07017835110804,
+      "fps": 197.07017835110804,
+      "gpu_memory_allocated_mb": 36.12890625,
+      "gpu_memory_reserved_mb": 144.0,
+      "cpu_rss_mb": 1574.2578125,
+      "peak_gpu_memory_mb": 117.50390625,
+      "result_count_correct": true,
+      "oom": false,
+      "error": null
+    },
+    {
+      "batch_size": 16,
+      "warm_latency": {
+        "count": 15,
+        "mean_ms": 80.78603393326678,
+        "min_ms": 79.56648899971697,
+        "max_ms": 81.7349369999647,
+        "std_ms": 0.6748451565111607,
+        "p95_ms": 81.68059319978056
+      },
+      "cold_start_ms": 82.19394800016744,
+      "throughput_images_per_sec": 198.0540350974128,
+      "fps": 198.0540350974128,
+      "gpu_memory_allocated_mb": 36.12890625,
+      "gpu_memory_reserved_mb": 244.0,
+      "cpu_rss_mb": 1574.296875,
+      "peak_gpu_memory_mb": 198.44140625,
+      "result_count_correct": true,
+      "oom": false,
+      "error": null
+    },
+    {
+      "batch_size": 32,
+      "warm_latency": {
+        "count": 15,
+        "mean_ms": 160.87553333336473,
+        "min_ms": 157.1477219999906,
+        "max_ms": 175.13168400000723,
+        "std_ms": 4.1640034498857466,
+        "p95_ms": 167.09032619992286
+      },
+      "cold_start_ms": 160.5582269999104,
+      "throughput_images_per_sec": 198.91153947996497,
+      "fps": 198.91153947996497,
+      "gpu_memory_allocated_mb": 36.12890625,
+      "gpu_memory_reserved_mb": 538.0,
+      "cpu_rss_mb": 1574.9921875,
+      "peak_gpu_memory_mb": 362.02197265625,
+      "result_count_correct": true,
+      "oom": false,
+      "error": null
+    }
+  ],
+  "batch_scaling_analysis": [
+    {
+      "batch_size": 1,
+      "throughput_images_per_sec": 59.48031996837584,
+      "scaling_efficiency_vs_batch1": 1.0
+    },
+    {
+      "batch_size": 2,
+      "throughput_images_per_sec": 101.39884197848843,
+      "scaling_efficiency_vs_batch1": 0.8523730372701391
+    },
+    {
+      "batch_size": 4,
+      "throughput_images_per_sec": 173.73064090854353,
+      "scaling_efficiency_vs_batch1": 0.7302021954526794
+    },
+    {
+      "batch_size": 8,
+      "throughput_images_per_sec": 197.07017835110804,
+      "scaling_efficiency_vs_batch1": 0.4141499626596772
+    },
+    {
+      "batch_size": 16,
+      "throughput_images_per_sec": 198.0540350974128,
+      "scaling_efficiency_vs_batch1": 0.20810878623668408
+    },
+    {
+      "batch_size": 32,
+      "throughput_images_per_sec": 198.91153947996497,
+      "scaling_efficiency_vs_batch1": 0.10450491207938668
+    }
+  ]
+}

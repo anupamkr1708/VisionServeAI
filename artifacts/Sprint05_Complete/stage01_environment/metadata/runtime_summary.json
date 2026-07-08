@@ -1,0 +1,25 @@
+{
+  "stage": "stage01_environment",
+  "elapsed_seconds": 2.569,
+  "start_resources": {
+    "cpu_percent": 28.4,
+    "ram_percent": 5.3,
+    "ram_used_gb": 1.21,
+    "ram_total_gb": 31.35,
+    "disk_percent": 86.79,
+    "disk_free_gb": 1065.03,
+    "gpu_memory_allocated_gb": 0.0,
+    "gpu_memory_reserved_gb": 0.0
+  },
+  "end_resources": {
+    "cpu_percent": 0.0,
+    "ram_percent": 5.5,
+    "ram_used_gb": 1.28,
+    "ram_total_gb": 31.35,
+    "disk_percent": 86.79,
+    "disk_free_gb": 1065.03,
+    "gpu_memory_allocated_gb": 0.0,
+    "gpu_memory_reserved_gb": 0.0
+  },
+  "seed": 42
+}

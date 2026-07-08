@@ -1,0 +1,13 @@
+{
+  "backbone": "densenet121",
+  "num_classes": 14,
+  "dropout": 0.3,
+  "classifier_path": "backbone.classifier",
+  "output_features": 14,
+  "total_parameters": 6968206,
+  "trainable_parameters": 0,
+  "device": "cuda",
+  "dtype": "float32",
+  "state_dict_key_count": 727,
+  "state_dict_key_hash": "52bdd01120593a33d8409368189b900f619d5797a7792110b04cd918585d4636"
+}

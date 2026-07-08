@@ -1,0 +1,10 @@
+{
+  "export_method": "script",
+  "output_path": "/kaggle/working/sprint05_deployment/stage03_export/model.ts",
+  "success": true,
+  "graph_hash": "9bd6647507d81fa97e588f8e3798649c431c0f2168d97d0d061b5152d0e59479",
+  "model_hash": "74ad647587bb8b8297072d03f1aed20ba5243899dd502a7e6dbdf8bfc6a59010",
+  "file_size_bytes": 28617249,
+  "warnings": [],
+  "errors": []
+}

@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "inference_runtime_deterministic": true,
+    "exports_usable": true,
+    "batch_support_correct": true,
+    "no_cuda_leaks": true,
+    "no_nans": true,
+    "no_infs": true,
+    "no_shape_mismatch": true,
+    "threshold_registry_consistent": true,
+    "output_schema_stable": true,
+    "memory_recovered": true
+  },
+  "warnings": [
+    "5 robustness edge-case(s) raised unhandled exceptions in the frozen Stage 4 InferenceEngine rather than returning a structured failure: ['wrong_dimensions_1x5x224x224', 'wrong_dimensions_1x3x10x10', 'none_input', 'integer_input', 'list_input']. These reflect upstream (Stage 4) behavior for inputs outside its documented file-path API contract; Stage 4 is frozen and out of scope to modify here. Recorded for visibility in robustness_summary.json."
+  ],
+  "fatal_errors": [],
+  "passed": true
+}

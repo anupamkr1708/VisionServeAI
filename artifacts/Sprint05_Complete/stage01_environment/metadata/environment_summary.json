@@ -1,0 +1,22 @@
+{
+  "python_version": "3.12.13",
+  "torch_version": "2.10.0+cu128",
+  "torchvision_version": "0.25.0+cu128",
+  "cuda_version": "12.8",
+  "cudnn_version": 91002,
+  "gpu_available": true,
+  "gpu_name": "Tesla T4",
+  "gpu_memory_gb": 14.56,
+  "cpu_cores": 4,
+  "cpu_cores_physical": 2,
+  "ram_total_gb": 31.35,
+  "os": "Linux 6.12.90+",
+  "platform": "Linux-6.12.90+-x86_64-with-glibc2.35",
+  "is_kaggle_environment": true,
+  "random_seed": 42,
+  "device": "cuda",
+  "mixed_precision_available": true,
+  "torch_compile_available": true,
+  "onnx_available": true,
+  "torchscript_available": true
+}

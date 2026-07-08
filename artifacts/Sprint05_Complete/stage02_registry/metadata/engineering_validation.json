@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "stage1_outputs_readable": true,
+    "stage1_validation_passed": true,
+    "model_reconstructed": true,
+    "weights_loaded": true,
+    "disease_class_names_present": true,
+    "no_duplicate_class_names": true,
+    "class_count_consistent_with_model": true,
+    "threshold_count_consistent": true,
+    "threshold_registry_valid": true,
+    "registry_count_consistent": true,
+    "no_duplicate_artifact_ids": true,
+    "no_critical_artifacts_missing": true,
+    "evaluation_summary_compatible": true,
+    "checkpoint_compatible": true,
+    "parameter_count_correct": true,
+    "model_hash_recorded": true,
+    "torch_version_compatible": true,
+    "gpu_compatibility": true,
+    "device_compatibility": true,
+    "checkpoint_integrity": true
+  },
+  "warnings": [],
+  "fatal_errors": [],
+  "passed": true
+}

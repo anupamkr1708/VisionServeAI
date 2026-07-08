@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "cpu_rss_mb": 1574.23046875,
+    "gpu_allocated_mb": 36.12890625,
+    "gpu_reserved_mb": 52.0
+  },
+  "final": {
+    "cpu_rss_mb": 1608.07421875,
+    "gpu_allocated_mb": 36.12890625,
+    "gpu_reserved_mb": 52.0
+  },
+  "peak_gpu_allocated_mb": 362.02197265625,
+  "cpu_rss_growth_mb": 33.84375,
+  "gpu_allocated_growth_mb": 0.0,
+  "leak_detected_cpu": false,
+  "leak_detected_gpu": false,
+  "leak_detected": false,
+  "memory_recovered": true,
+  "no_cuda_leaks": true
+}

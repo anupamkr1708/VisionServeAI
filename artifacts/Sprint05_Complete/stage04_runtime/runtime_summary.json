@@ -1,0 +1,31 @@
+{
+  "stage": "stage04_runtime",
+  "status": "OK",
+  "elapsed_seconds": 1.147,
+  "model_version": "densenet121-74ad647587bb",
+  "model_fingerprint_sha256": "74ad647587bb8b8297072d03f1aed20ba5243899dd502a7e6dbdf8bfc6a59010",
+  "num_classes": 14,
+  "class_names": [
+    "Atelectasis",
+    "Cardiomegaly",
+    "Consolidation",
+    "Edema",
+    "Effusion",
+    "Emphysema",
+    "Fibrosis",
+    "Hernia",
+    "Infiltration",
+    "Mass",
+    "Nodule",
+    "Pleural_Thickening",
+    "Pneumonia",
+    "Pneumothorax"
+  ],
+  "batch_support": true,
+  "num_synthetic_samples_validated": 4,
+  "runtime_validation_passed": true,
+  "engineering_checks_passed": 7,
+  "engineering_checks_total": 7,
+  "warnings_count": 0,
+  "output_directory": "/kaggle/working/sprint05_deployment/stage04_runtime"
+}

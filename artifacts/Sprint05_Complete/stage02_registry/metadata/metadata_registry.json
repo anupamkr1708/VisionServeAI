@@ -1,0 +1,232 @@
+{
+  "disease_metadata": {
+    "diseases": [
+      "Atelectasis",
+      "Cardiomegaly",
+      "Consolidation",
+      "Edema",
+      "Effusion",
+      "Emphysema",
+      "Fibrosis",
+      "Hernia",
+      "Infiltration",
+      "Mass",
+      "Nodule",
+      "Pleural_Thickening",
+      "Pneumonia",
+      "Pneumothorax"
+    ],
+    "disease_to_index": {
+      "Atelectasis": 0,
+      "Cardiomegaly": 1,
+      "Consolidation": 2,
+      "Edema": 3,
+      "Effusion": 4,
+      "Emphysema": 5,
+      "Fibrosis": 6,
+      "Hernia": 7,
+      "Infiltration": 8,
+      "Mass": 9,
+      "Nodule": 10,
+      "Pleural_Thickening": 11,
+      "Pneumonia": 12,
+      "Pneumothorax": 13
+    },
+    "index_to_disease": {
+      "0": "Atelectasis",
+      "1": "Cardiomegaly",
+      "2": "Consolidation",
+      "3": "Edema",
+      "4": "Effusion",
+      "5": "Emphysema",
+      "6": "Fibrosis",
+      "7": "Hernia",
+      "8": "Infiltration",
+      "9": "Mass",
+      "10": "Nodule",
+      "11": "Pleural_Thickening",
+      "12": "Pneumonia",
+      "13": "Pneumothorax"
+    }
+  },
+  "training_metadata": {
+    "project": "VisionServeAI",
+    "sprint": "04",
+    "pipeline_version": "1.0.0",
+    "phase": "Phase 6 - Production Training Pipeline",
+    "generated_at_utc": "2026-07-02T10:18:49Z",
+    "model": {
+      "model_name": "DenseNet121-ChestXray14",
+      "backbone": "densenet121",
+      "num_classes": 14,
+      "dropout": 0.3
+    },
+    "training": {
+      "configured_epochs": 30,
+      "epochs_trained": 17,
+      "early_stopped": true,
+      "best_epoch": 10,
+      "last_completed_epoch": 17,
+      "best_val_loss": 1.2928808805067944,
+      "best_val_macro_auroc": 0.6291324087507639,
+      "early_stopping_patience": 7
+    },
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "weight_decay": 1e-05,
+      "batch_size": 32,
+      "gradient_clip": 1.0,
+      "use_amp": true,
+      "lr_scheduler": "cosine",
+      "random_seed": 42
+    },
+    "artifacts": {
+      "best_model.pt": "/kaggle/working/visionserveai/sprint04/checkpoints/best_model.pt",
+      "last_model.pt": "/kaggle/working/visionserveai/sprint04/checkpoints/last_model.pt",
+      "training_history.json": "/kaggle/working/visionserveai/sprint04/metrics/training_history.json",
+      "checkpoint_summary.json": "/kaggle/working/visionserveai/sprint04/checkpoints/checkpoint_summary.json",
+      "training_report.json": "/kaggle/working/visionserveai/sprint04/training_report.json",
+      "epoch_logs.json": "/kaggle/working/visionserveai/sprint04/metrics/epoch_logs.json",
+      "best_model_metadata.json": "/kaggle/working/visionserveai/sprint04/metrics/best_model_metadata.json"
+    },
+    "artifact_validation_passed": false,
+    "checkpoints": {
+      "best_model_pt": "/kaggle/working/visionserveai/sprint04/checkpoints/best_model.pt",
+      "last_model_pt": "/kaggle/working/visionserveai/sprint04/checkpoints/last_model.pt",
+      "checkpoint_dir": "/kaggle/working/visionserveai/sprint04/checkpoints"
+    }
+  },
+  "evaluation_metadata": {
+    "generated_at_utc": "2026-07-05T05:39:47.482220+00:00",
+    "notebook": "Sprint04_Evaluation.ipynb",
+    "stage": "Stage 5 \u2014 Metrics Engine",
+    "threshold": 0.5,
+    "n_samples": 25596,
+    "n_classes": 14,
+    "headline_metrics": {
+      "auroc_macro": 0.46394449390805065,
+      "auroc_micro": 0.584349289971795,
+      "auroc_weighted": 0.48197892142198034,
+      "f1_macro": 0.04750639120267578,
+      "f1_micro": 0.15714730307447872,
+      "subset_accuracy": 0.0001562744178777934,
+      "hamming_loss": 0.28719331145491483,
+      "mcc_macro": -0.0005616525689169788,
+      "balanced_accuracy_macro": 0.4995022633276626
+    },
+    "ranking_metrics_applicability": {
+      "n_samples_total": 25596,
+      "n_samples_eligible": 15735,
+      "n_samples_excluded": 9861,
+      "exclusion_reason": "row has all-zero or all-one label vector; LRAP / coverage error / label ranking loss are mathematically undefined for such rows",
+      "applicable": true,
+      "label_ranking_average_precision": 0.2777575840934694,
+      "coverage_error": 7.615125516364792,
+      "label_ranking_loss": 0.4089408749360404
+    },
+    "training_vs_test_comparison": {
+      "note": "Informational only \u2014 validation-split performance from training is NOT expected to equal held-out test-split performance computed here, and a mismatch is not a validation failure.",
+      "val_macro_auroc": 0.6291324087507639,
+      "test_macro_auroc": 0.46394449390805065,
+      "val_micro_auroc": 0.6705190176745871,
+      "test_micro_auroc": 0.584349289971795,
+      "val_f1_macro": 0.10453434940588395,
+      "test_f1_macro": 0.04750639120267578
+    },
+    "source_artifacts_consumed": {
+      "predictions_parquet": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/predictions.parquet",
+      "raw_logits_pt": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/raw_logits.pt",
+      "prediction_metadata": "/kaggle/working/sprint04_evaluation/stage04_inference_engine/prediction_metadata.json",
+      "dataset_summary": "/kaggle/working/sprint04_evaluation/stage03_dataset_builder/dataset_summary.json",
+      "artifact_validation": "/kaggle/working/sprint04_evaluation/stage02_artifact_loader/artifact_validation.json",
+      "training_summary": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/training_summary.json",
+      "best_model_metadata": "/kaggle/input/datasets/anupsharma1730/visionserveai-sprint04-artifacts/visionserveai/sprint04/metrics/best_model_metadata.json"
+    },
+    "output_artifacts": {
+      "evaluation_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/evaluation_metrics.json",
+      "macro_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/macro_metrics.json",
+      "micro_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/micro_metrics.json",
+      "weighted_metrics": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/weighted_metrics.json",
+      "per_class_metrics_csv": "/kaggle/working/sprint04_evaluation/stage05_metrics_engine/per_class_metrics.csv"
+    },
+    "warnings": []
+  },
+  "deployment_metadata": {
+    "generated_at_utc": "2026-07-05T07:04:55.495507+00:00",
+    "components_verified": {
+      "checkpoint_verified": false,
+      "inference_verified": true,
+      "calibration_verified": true,
+      "thresholds_verified": true,
+      "interpretability_verified": true,
+      "engineering_validation_verified": true
+    },
+    "n_classes": 14,
+    "n_deploy_candidate_classes": 0,
+    "n_review_required_classes": 0,
+    "n_do_not_deploy_classes": 14,
+    "blockers": [
+      "checkpoint_verified",
+      "14/14 classes flagged DO_NOT_DEPLOY: ['Atelectasis', 'Cardiomegaly', 'Consolidation', 'Edema', 'Effusion', 'Emphysema', 'Fibrosis', 'Hernia', 'Infiltration', 'Mass', 'Nodule', 'Pleural_Thickening', 'Pneumonia', 'Pneumothorax']"
+    ],
+    "score_0_100": 50,
+    "score_explanation": "Weighted sum over verified components ({'checkpoint_verified': 20, 'inference_verified': 20, 'calibration_verified': 15, 'thresholds_verified': 15, 'interpretability_verified': 15, 'engineering_validation_verified': 15}) = base score, minus a penalty of 30 points scaled by the fraction of classes flagged DO_NOT_DEPLOY (14/14 = 100.00%). A single unverified hard component forces a DO_NOT_DEPLOY recommendation regardless of numeric score.",
+    "deployment_recommendation": "DO_NOT_DEPLOY"
+  },
+  "publication_metadata": {
+    "generated_at_utc": "2026-07-05T07:04:55.496560+00:00",
+    "dimensions": {
+      "dataset": {
+        "score_0_100": 75,
+        "notes": "n_test_samples=25596, n_classes=14; class imbalance ratio (max/min support)=71.06976744186046"
+      },
+      "metrics": {
+        "score_0_100": 40,
+        "notes": "macro AUROC=0.46394449390805065, reported at macro/micro/weighted granularity with a full per-class breakdown."
+      },
+      "calibration": {
+        "score_0_100": 55,
+        "notes": "macro ECE=0.2819920381767572, macro MCE=0.35877962858267926, reliability diagrams and per-class calibration reported."
+      },
+      "interpretability": {
+        "score_0_100": 80,
+        "notes": "7 independent attribution methods run over 119 stratified samples with an explicit selection-reason taxonomy."
+      },
+      "engineering": {
+        "score_0_100": 95,
+        "notes": "All Stage 5-7 engineering validations passed with zero failed checks."
+      },
+      "reproducibility": {
+        "score_0_100": 80,
+        "notes": "Fixed random seed=42, deterministic cuDNN, frozen per-stage artifact contracts."
+      },
+      "artifact_completeness": {
+        "score_0_100": 90,
+        "notes": "35 distinct artifacts tracked across Stages 1-7."
+      },
+      "research_completeness": {
+        "score_0_100": 70,
+        "notes": "Covers detection performance, calibration, threshold optimization, and 7-method explainability, but lacks external/multi-site validation and prospective clinical evaluation."
+      }
+    },
+    "overall_score_0_100": 73,
+    "strengths": [
+      "Macro AUROC of 0.46394449390805065 across 14 pathologies on 25596 held-out test samples.",
+      "7-method explainability suite (Grad-CAM, Grad-CAM++, Score-CAM, Eigen-CAM, Guided Backprop, Integrated Gradients, Occlusion) with zero method failures reported in interpretability_summary.json.",
+      "All Stage 5-7 engineering validations are fully green (0 failed checks).",
+      "Deterministic, seeded, resumable pipeline with an explicit frozen artifact contract between every stage."
+    ],
+    "weaknesses": [
+      "Explainability coverage is bounded to 119 of 25596 test samples (0.46%) for computational reasons.",
+      "Class imbalance ratio (max/min support) of 71.06976744186046; rare classes have wide uncertainty in their AUROC/ECE estimates.",
+      "Single held-out split from one public dataset; no external or multi-institution validation cohort.",
+      "Primary metrics are reported at a fixed 0.5 threshold even though Stage 6 computes per-class optimal thresholds that differ substantially from 0.5."
+    ],
+    "future_work": [
+      "External validation on an independent chest X-ray cohort (different scanner population, different labeling protocol).",
+      "Per-class threshold deployment (using Stage 6's optimal thresholds) rather than a single global 0.5 cut-off, with prospective monitoring of the resulting confusion matrix.",
+      "Targeted data collection or class-balanced sampling for the lowest-support pathologies.",
+      "Quantitative agreement study between explainability heatmaps and radiologist-annotated regions of interest."
+    ]
+  }
+}

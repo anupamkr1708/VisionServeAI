@@ -1,0 +1,152 @@
+{
+  "generator": "VisionServeAI-Sprint05-Stage08",
+  "stage": "Sprint05-Stage08-DeploymentDocumentation",
+  "artifact_id": "model_card",
+  "version": "1.0.0",
+  "generated_utc": "2026-07-08T11:02:17.228764+00:00",
+  "data": {
+    "model_name": "VisionServeAI Chest X-Ray Multi-Label Classifier",
+    "version": null,
+    "description": "A densenet121-based multi-label image classifier that estimates the probability of 14 thoracic disease findings from a single chest X-ray image, following the NIH ChestX-ray14 label taxonomy.",
+    "purpose": "Research-oriented decision-support signal for thoracic disease screening on chest radiographs.",
+    "architecture": {
+      "backbone": "densenet121",
+      "total_parameters": 6968206,
+      "trainable_parameters": 0,
+      "output_head": "14-way sigmoid multi-label classifier"
+    },
+    "training_dataset": {
+      "name": "NIH Chest X-ray14",
+      "training_metadata_available": true,
+      "training_metadata_keys": [
+        "artifact_validation_passed",
+        "artifacts",
+        "checkpoints",
+        "generated_at_utc",
+        "hyperparameters",
+        "model",
+        "phase",
+        "pipeline_version",
+        "project",
+        "sprint",
+        "training"
+      ],
+      "evaluation_metadata_available": true,
+      "evaluation_metadata_keys": [
+        "generated_at_utc",
+        "headline_metrics",
+        "n_classes",
+        "n_samples",
+        "notebook",
+        "output_artifacts",
+        "ranking_metrics_applicability",
+        "source_artifacts_consumed",
+        "stage",
+        "threshold",
+        "training_vs_test_comparison",
+        "warnings"
+      ]
+    },
+    "input_resolution": {
+      "height": 224,
+      "width": 224,
+      "channels": 3,
+      "normalization_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "normalization_std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "output_classes": [
+      "Atelectasis",
+      "Cardiomegaly",
+      "Consolidation",
+      "Edema",
+      "Effusion",
+      "Emphysema",
+      "Fibrosis",
+      "Hernia",
+      "Infiltration",
+      "Mass",
+      "Nodule",
+      "Pleural_Thickening",
+      "Pneumonia",
+      "Pneumothorax"
+    ],
+    "thresholding": {
+      "per_class_thresholds": {
+        "Atelectasis": 6.325932986328553e-07,
+        "Cardiomegaly": 0.014227046631276608,
+        "Consolidation": 0.9983059167861938,
+        "Edema": 0.7518303990364075,
+        "Effusion": 2.956914010518452e-12,
+        "Emphysema": 0.0004060639475937933,
+        "Fibrosis": 8.525514564980869e-36,
+        "Hernia": 3.139132888409754e-17,
+        "Infiltration": 0.9965029954910278,
+        "Mass": 4.485758893224556e-07,
+        "Nodule": 1.502111953922614e-22,
+        "Pleural_Thickening": 6.367942875480995e-15,
+        "Pneumonia": 1.920059570321639e-13,
+        "Pneumothorax": 3.2106581282498325e-10
+      },
+      "source": "/kaggle/input/datasets/anupsharma1730/visionserve-sprint04-evaluation/sprint04_evaluation/stage06_threshold_calibration_engine/optimal_thresholds.json",
+      "has_extended_metadata": true
+    },
+    "inference_pipeline": "decode -> resize -> normalize -> forward pass (sigmoid) -> per-class threshold",
+    "deployment_formats": {
+      "torchscript": {
+        "method": "script",
+        "success": true,
+        "path": "/kaggle/working/sprint05_deployment/stage03_export/model.ts"
+      },
+      "onnx": {
+        "opset_version": 17,
+        "success": true,
+        "checker_passed": true,
+        "path": "/kaggle/working/sprint05_deployment/stage03_export/model.onnx"
+      }
+    },
+    "supported_hardware": {
+      "pytorch": {
+        "cpu": true,
+        "cuda": true
+      },
+      "torchscript": {
+        "cpu": true,
+        "cuda": true
+      },
+      "onnxruntime": {
+        "cpu": true,
+        "cuda": false
+      }
+    },
+    "expected_inputs": "RGB image file (png/jpg/jpeg/bmp/tiff), any resolution -- resized internally.",
+    "expected_outputs": "JSON PredictionResult: predicted_diseases, confidence_scores, probabilities, thresholds_used, model_version, model_fingerprint_sha256, inference_timestamp_utc.",
+    "known_limitations": [
+      "Single frontal-view chest radiograph input only; no lateral-view or multi-view fusion.",
+      "Multi-label thresholds are calibrated on the Sprint 04 evaluation split and may not transfer directly to a different patient population, scanner, or acquisition protocol.",
+      "The model has not undergone prospective clinical validation."
+    ],
+    "failure_cases": [
+      "missing_file",
+      "unsupported_extension",
+      "corrupted_image",
+      "zero_byte_image",
+      "wrong_channel_count",
+      "invalid_tensor_dimensions"
+    ],
+    "ethical_considerations": "Predictions reflect patterns in historical, retrospectively-labeled data and may encode dataset-specific biases (acquisition site, patient demographics, label noise inherited from the original NLP-derived NIH labels). Outputs must not be used as the sole basis for a clinical decision.",
+    "clinical_disclaimer": "This model is NOT approved for clinical diagnosis, triage, or treatment decisions. It has not been cleared by any regulatory body (e.g., FDA, CE). Any clinical use requires independent validation, regulatory clearance, and qualified human oversight.",
+    "research_use_disclaimer": "Provided for research and engineering demonstration purposes only. Users are responsible for independently validating performance on their own data before any downstream use.",
+    "version_info": null,
+    "authors": "VisionServeAI ML Platform Engineering Team",
+    "license": "Research use only -- not licensed for clinical deployment.",
+    "generated_utc": "2026-07-08T11:02:17.228742+00:00"
+  }
+}

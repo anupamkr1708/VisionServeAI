@@ -1,0 +1,109 @@
+{
+  "torchscript": {
+    "export_method": "script",
+    "output_path": "/kaggle/working/sprint05_deployment/stage03_export/model.ts",
+    "success": true,
+    "graph_hash": "9bd6647507d81fa97e588f8e3798649c431c0f2168d97d0d061b5152d0e59479",
+    "model_hash": "74ad647587bb8b8297072d03f1aed20ba5243899dd502a7e6dbdf8bfc6a59010",
+    "file_size_bytes": 28617249,
+    "warnings": [],
+    "errors": []
+  },
+  "onnx": {
+    "output_path": "/kaggle/working/sprint05_deployment/stage03_export/model.onnx",
+    "success": true,
+    "opset_version": 17,
+    "model_hash": "74ad647587bb8b8297072d03f1aed20ba5243899dd502a7e6dbdf8bfc6a59010",
+    "file_size_bytes": 1062588,
+    "checker_passed": true,
+    "input_names": [
+      "input"
+    ],
+    "output_names": [
+      "output"
+    ],
+    "dynamic_axes": {
+      "input": {
+        "0": "batch_size"
+      },
+      "output": {
+        "0": "batch_size"
+      }
+    },
+    "warnings": [],
+    "errors": []
+  },
+  "numerical_validation": {
+    "pytorch_vs_torchscript": {
+      "shape_match": true,
+      "dtype_match": true,
+      "reference_shape": [
+        2,
+        14
+      ],
+      "candidate_shape": [
+        2,
+        14
+      ],
+      "reference_dtype": "torch.float32",
+      "candidate_dtype": "torch.float32",
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "max_relative_error": 0.0
+    },
+    "pytorch_vs_onnx": {
+      "shape_match": true,
+      "dtype_match": true,
+      "reference_shape": [
+        2,
+        14
+      ],
+      "candidate_shape": [
+        2,
+        14
+      ],
+      "reference_dtype": "torch.float32",
+      "candidate_dtype": "torch.float32",
+      "max_abs_error": 0.0001220703125,
+      "mean_abs_error": 3.511565228109248e-05,
+      "max_relative_error": 4.109419478481868e-06
+    },
+    "max_abs_error_threshold": 0.001,
+    "max_relative_error_threshold": 0.01,
+    "torchscript_load_success": true,
+    "torchscript_inference_success": true,
+    "onnx_load_success": true,
+    "onnx_inference_success": true,
+    "passed": true,
+    "errors": []
+  },
+  "model_signature": {
+    "input_names": [
+      "input"
+    ],
+    "output_names": [
+      "output"
+    ],
+    "input_shape": [
+      null,
+      3,
+      224,
+      224
+    ],
+    "output_shape": [
+      null,
+      14
+    ],
+    "input_dtype": "float32",
+    "output_dtype": "float32",
+    "batch_support": "dynamic",
+    "dynamic_axes": {
+      "input": {
+        "0": "batch_size"
+      },
+      "output": {
+        "0": "batch_size"
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "generator": "VisionServeAI-Sprint05-Stage08",
+  "stage": "Sprint05-Stage08-DeploymentDocumentation",
+  "artifact_id": "release_manifest",
+  "version": "1.0.0",
+  "generated_utc": "2026-07-08T11:02:17.256096+00:00",
+  "data": {
+    "version": null,
+    "build_timestamp_utc": "2026-07-08T11:02:17.256033+00:00",
+    "artifacts": [
+      {
+        "artifact_id": "deployment_summary",
+        "category": "reports",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/reports/deployment_summary.json",
+        "size_bytes": 1584,
+        "sha256": "f01c9d8d4a992ce6ce002e674860ae515d107bd48e5cfec091fc16c741ca9612",
+        "generated_utc": "2026-07-08T11:02:17.219908+00:00"
+      },
+      {
+        "artifact_id": "deployment_summary_md",
+        "category": "reports",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/reports/deployment_summary.md",
+        "size_bytes": 902,
+        "sha256": "979c87bf25b8a203be8528004f2fea8d7dd468c2183705b1e037172082c6bfcf",
+        "generated_utc": "2026-07-08T11:02:17.221055+00:00"
+      },
+      {
+        "artifact_id": "deployment_report",
+        "category": "documentation",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/documentation/deployment_report.json",
+        "size_bytes": 23886,
+        "sha256": "51c43125abf498f32bf8aea379c614f5e28b14fa47e5dc18b4ad4f3f3a1cce9a",
+        "generated_utc": "2026-07-08T11:02:17.225335+00:00"
+      },
+      {
+        "artifact_id": "deployment_report_md",
+        "category": "documentation",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/documentation/deployment_report.md",
+        "size_bytes": 5814,
+        "sha256": "d0a4dc2fc80e856ce8ff0fd954a9ecc675bf6c53f237c5cdef7cad16d78e0c77",
+        "generated_utc": "2026-07-08T11:02:17.226552+00:00"
+      },
+      {
+        "artifact_id": "model_card",
+        "category": "model_card",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/model_card/model_card.json",
+        "size_bytes": 5752,
+        "sha256": "05e053a0f8dd65217272a72567232127ca4d1f94f41ef2c903004697885df79e",
+        "generated_utc": "2026-07-08T11:02:17.229763+00:00"
+      },
+      {
+        "artifact_id": "model_card_md",
+        "category": "model_card",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/model_card/model_card.md",
+        "size_bytes": 3903,
+        "sha256": "14a92266274a79bae399637342d941de6b02a33c44e89555429591e45e36dc5b",
+        "generated_utc": "2026-07-08T11:02:17.230792+00:00"
+      },
+      {
+        "artifact_id": "deployment_guide_md",
+        "category": "deployment_guides",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/deployment_guides/deployment_guide.md",
+        "size_bytes": 3996,
+        "sha256": "561c3dc1733f104b103e25d57552d764a7daf69836aaf45949415841ad2ada28",
+        "generated_utc": "2026-07-08T11:02:17.233646+00:00"
+      },
+      {
+        "artifact_id": "api_contract",
+        "category": "api",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/api/api_contract.json",
+        "size_bytes": 3665,
+        "sha256": "1981b96397c2b6528d62554d3f374364e4e7bc7ad832b4895103c56faf866292",
+        "generated_utc": "2026-07-08T11:02:17.236516+00:00"
+      },
+      {
+        "artifact_id": "api_reference_md",
+        "category": "api",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/api/api_reference.md",
+        "size_bytes": 2481,
+        "sha256": "8ab1c7d1312119730cf7c3e12e5df2729364e48a6046a92d5ab9359b1fd7dee4",
+        "generated_utc": "2026-07-08T11:02:17.238262+00:00"
+      },
+      {
+        "artifact_id": "release_notes_md",
+        "category": "release",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/release/release_notes.md",
+        "size_bytes": 2721,
+        "sha256": "27539c066a2a479b154d8ce24ee55434acf7242a69db5f3b37c70011f3ab872a",
+        "generated_utc": "2026-07-08T11:02:17.241304+00:00"
+      },
+      {
+        "artifact_id": "sprint05_final_report",
+        "category": "reports",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/reports/Sprint05_Final_Report.json",
+        "size_bytes": 12548,
+        "sha256": "7219af5657495601a91c4bdbfa62a56c2b5ef472642ab1854fa28d7549479019",
+        "generated_utc": "2026-07-08T11:02:17.244833+00:00"
+      },
+      {
+        "artifact_id": "sprint05_final_report_md",
+        "category": "reports",
+        "file_path": "/kaggle/working/sprint05_deployment/stage08_release/reports/Sprint05_Final_Report.md",
+        "size_bytes": 1821,
+        "sha256": "7174116d77cd25a73b9b77b441db07061a4d0791444a1350a208688f70709242",
+        "generated_utc": "2026-07-08T11:02:17.246563+00:00"
+      }
+    ],
+    "checksums": {
+      "deployment_summary": "f01c9d8d4a992ce6ce002e674860ae515d107bd48e5cfec091fc16c741ca9612",
+      "deployment_summary_md": "979c87bf25b8a203be8528004f2fea8d7dd468c2183705b1e037172082c6bfcf",
+      "deployment_report": "51c43125abf498f32bf8aea379c614f5e28b14fa47e5dc18b4ad4f3f3a1cce9a",
+      "deployment_report_md": "d0a4dc2fc80e856ce8ff0fd954a9ecc675bf6c53f237c5cdef7cad16d78e0c77",
+      "model_card": "05e053a0f8dd65217272a72567232127ca4d1f94f41ef2c903004697885df79e",
+      "model_card_md": "14a92266274a79bae399637342d941de6b02a33c44e89555429591e45e36dc5b",
+      "deployment_guide_md": "561c3dc1733f104b103e25d57552d764a7daf69836aaf45949415841ad2ada28",
+      "api_contract": "1981b96397c2b6528d62554d3f374364e4e7bc7ad832b4895103c56faf866292",
+      "api_reference_md": "8ab1c7d1312119730cf7c3e12e5df2729364e48a6046a92d5ab9359b1fd7dee4",
+      "release_notes_md": "27539c066a2a479b154d8ce24ee55434acf7242a69db5f3b37c70011f3ab872a",
+      "sprint05_final_report": "7219af5657495601a91c4bdbfa62a56c2b5ef472642ab1854fa28d7549479019",
+      "sprint05_final_report_md": "7174116d77cd25a73b9b77b441db07061a4d0791444a1350a208688f70709242"
+    },
+    "dependencies": {
+      "torch": "2.10.0+cu128",
+      "torchvision": "0.25.0+cu128",
+      "onnx": "1.22.0",
+      "onnxruntime": "1.27.0",
+      "numpy": "2.0.2",
+      "pillow": "11.3.0"
+    },
+    "framework_versions": {
+      "python": "3.12.13",
+      "torch": "2.10.0+cu128",
+      "torchvision": "0.25.0+cu128"
+    },
+    "deployment_score": 100.0,
+    "readiness": "READY",
+    "package_directory": null,
+    "output_directory": "/kaggle/working/sprint05_deployment/stage07_deployment_package",
+    "stage07_total_artifacts": 8,
+    "stage07_total_size_bytes": 29692504
+  }
+}

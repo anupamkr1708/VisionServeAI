@@ -1,0 +1,26 @@
+{
+  "generated_utc": "2026-07-08T10:34:12.229340+00:00",
+  "checks": {
+    "all_critical_artifacts_exist": true,
+    "checksums_match": true,
+    "disease_metadata_present": true,
+    "training_metadata_present": true,
+    "evaluation_metadata_present": true,
+    "class_count_consistent": true,
+    "threshold_count_consistent": true,
+    "threshold_registry_valid": true,
+    "export_lineage_consistent": true,
+    "export_numerical_validation_passed": true,
+    "runtime_device_consistent": true,
+    "compatibility_report_passed": true
+  },
+  "checksum_mismatches": [],
+  "class_counts": {
+    "model_registry.num_classes": 14,
+    "inference_engine.class_names": 14,
+    "threshold_registry.class_count": 14
+  },
+  "warnings": [],
+  "fatal_errors": [],
+  "passed": true
+}
