@@ -1,0 +1,24 @@
+# === Foundation (used starting this phase) ===
+psutil>=5.9
+PyYAML>=6.0
+
+# === Inference runtime (needed from the model-loader phase onward) ===
+torch>=2.2
+torchvision>=0.17
+onnx>=1.16
+onnxruntime>=1.17
+Pillow>=10.0
+numpy
+
+# === Backend / API (needed from the backend phase onward) ===
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.6
+python-multipart
+
+# === Dev / test ===
+pytest>=7.4
+pytest-cov
+httpx  # FastAPI TestClient dependency
+ruff
+mypy
