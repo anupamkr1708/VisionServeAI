@@ -21,8 +21,21 @@ Dependency order (see class docstring for the full graph):
                 -> PredictionService
                 -> HealthService
             -> HealthService
+            -> ExplainabilityEngine (inference.explainability.engine) -- wrapped by
+                ExplainabilityService, see :meth:`ServiceRegistry.initialize`
         -> HealthService
-    ExplainabilityService (independent -- see services.explainability_service)
+
+Now that Stage 6's ``ExplainabilityEngine`` has been migrated
+(``inference.explainability.engine``), ``ExplainabilityService`` is no
+longer independent of the rest of the graph by necessity -- only by
+default injection point. :meth:`initialize` auto-builds a real
+``ExplainabilityEngine`` from the already-constructed ``ModelService``
+unless an explicit ``explainability_engine`` was passed to the
+constructor, or ``enable_explainability=False``.
+``ExplainabilityService`` itself (``services.explainability_service``) is
+untouched by this: it is still handed an engine through its existing
+``engine=`` constructor parameter / ``set_engine()``, exactly as before --
+only *what* gets handed to it, by default, has changed.
 """
 from __future__ import annotations
 
@@ -32,6 +45,7 @@ from typing import Any, Dict, Optional
 
 import torch
 
+from inference.explainability.engine import ExplainabilityEngine
 from inference.utils.logging import build_logger
 from services.artifact_service import ArtifactService
 from services.explainability_service import ExplainabilityService, SupportsExplainability
@@ -87,6 +101,8 @@ class ServiceRegistry:
         explainability_engine: Optional[SupportsExplainability] = None,
         logger: Optional[logging.Logger] = None,
         log_dir: Optional[Path] = None,
+        enable_explainability: bool = True,
+        explainability_output_dir: Optional[Path] = None,
     ) -> None:
         """
         Args:
@@ -101,15 +117,34 @@ class ServiceRegistry:
                 for ``"torchscript"``/``"onnx"``.
             warmup_iterations: Forwarded to :class:`RuntimeService`.
             explainability_engine: Optional pre-built engine to inject into
-                :class:`ExplainabilityService` (see that module's docstring
-                -- the real Stage 6 engine is not yet migrated, so this is
-                ``None`` by default and can be set later via
-                ``registry.explainability.set_engine(...)``).
+                :class:`ExplainabilityService` directly. Now that Stage 6's
+                ``ExplainabilityEngine`` has been migrated
+                (``inference.explainability.engine.ExplainabilityEngine``),
+                leaving this ``None`` (the default) no longer means "no
+                engine" -- :meth:`initialize` builds one automatically from
+                the already-constructed :class:`ModelService` (see
+                ``explainability_output_dir`` below). Pass an explicit
+                engine here only to override that default (e.g. a test
+                double, or a differently-configured engine instance).
             logger: Optional pre-built logger, shared by every service.
                 Built via :func:`inference.utils.logging.build_logger` if
                 not given.
             log_dir: Directory for the auto-built logger's log file, used
                 only when ``logger`` is not given. Defaults to ``./logs``.
+            enable_explainability: If ``False``, skip auto-constructing an
+                ``ExplainabilityEngine`` even when ``explainability_engine``
+                is ``None`` -- ``registry.explainability`` is still built,
+                just with no engine wrapped (matching this constructor's
+                pre-migration default behaviour), for callers who want
+                prediction/health only, without the memory/compute cost of
+                an explainability engine (e.g. lightweight test wiring).
+                Ignored if ``explainability_engine`` is explicitly given.
+            explainability_output_dir: Root directory the auto-built
+                ``ExplainabilityEngine`` writes heatmaps/overlays/metadata
+                under. Defaults to ``artifacts/explainability`` (relative
+                to the current working directory) if not given. Unused if
+                an explicit ``explainability_engine`` is supplied, or if
+                ``enable_explainability=False``.
         """
         self.artifact_roots = artifact_roots
         self.export_dir = Path(export_dir)
@@ -120,6 +155,11 @@ class ServiceRegistry:
         self.explainability_engine = explainability_engine
         self.logger = logger
         self.log_dir = Path(log_dir) if log_dir is not None else Path("logs")
+        self.enable_explainability = enable_explainability
+        self.explainability_output_dir = (
+            Path(explainability_output_dir) if explainability_output_dir is not None
+            else Path("artifacts") / "explainability"
+        )
 
         self.artifact: Optional[ArtifactService] = None
         self.model: Optional[ModelService] = None
@@ -168,11 +208,36 @@ class ServiceRegistry:
         self.health = HealthService(
             model_service=self.model, runtime_service=self.runtime, artifact_service=self.artifact, logger=self.logger,
         )
-        self.explainability = ExplainabilityService(logger=self.logger, engine=self.explainability_engine)
+
+        engine = self.explainability_engine
+        if engine is None and self.enable_explainability:
+            engine = self._build_default_explainability_engine()
+        self.explainability = ExplainabilityService(logger=self.logger, engine=engine)
 
         self._initialized = True
         self.logger.info("SERVICE_REGISTRY initialized: runtime_type=%s device=%s", self.runtime_type, device)
         return self
+
+    def _build_default_explainability_engine(self) -> ExplainabilityEngine:
+        """Construct the real ``ExplainabilityEngine`` from the
+        already-loaded :class:`ModelService`, using its raw ``nn.Module``
+        directly rather than ``self.runtime``/``RuntimeService`` -- see
+        ``ExplainabilityEngine``'s own class docstring for why (gradient-
+        based explainability needs an autograd-enabled model with
+        hookable layers; the Runtime Abstraction Layer's ``PyTorchRuntime``
+        deliberately disables both for serving)."""
+        model_registry = self.model.model_registry
+        return ExplainabilityEngine(
+            model=self.model.model,
+            device=self.device,
+            class_names=self.model.class_names(),
+            preprocessing_config=self.model.preprocessing_config,
+            output_dir=self.explainability_output_dir,
+            logger=self.logger,
+            backbone=model_registry.backbone,
+            model_version=self.model.model_version,
+            model_fingerprint=model_registry.checkpoint_sha256,
+        )
 
     def shutdown(self) -> None:
         """Shut down the active runtime and mark this registry
