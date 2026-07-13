@@ -46,6 +46,7 @@ from typing import Any, Dict, Optional
 import torch
 
 from inference.explainability.engine import ExplainabilityEngine
+from inference.utils.environment import set_seed
 from inference.utils.logging import build_logger
 from services.artifact_service import ArtifactService
 from services.explainability_service import ExplainabilityService, SupportsExplainability
@@ -103,6 +104,7 @@ class ServiceRegistry:
         log_dir: Optional[Path] = None,
         enable_explainability: bool = True,
         explainability_output_dir: Optional[Path] = None,
+        seed: Optional[int] = None,
     ) -> None:
         """
         Args:
@@ -145,6 +147,14 @@ class ServiceRegistry:
                 to the current working directory) if not given. Unused if
                 an explicit ``explainability_engine`` is supplied, or if
                 ``enable_explainability=False``.
+            seed: Passed to :func:`inference.utils.environment.set_seed`
+                during :meth:`initialize`, matching Stage 1's own
+                ``set_seed(SEED)`` call at pipeline startup (notebook line
+                ~592) -- a gap this cleanup phase closes (see
+                ``inference/utils/environment.py``'s module docstring for
+                why this matters even for deterministic eval-mode
+                inference). Defaults to ``configs.defaults.SEED`` (``42``,
+                the notebook's own constant) when not given.
         """
         self.artifact_roots = artifact_roots
         self.export_dir = Path(export_dir)
@@ -160,6 +170,7 @@ class ServiceRegistry:
             Path(explainability_output_dir) if explainability_output_dir is not None
             else Path("artifacts") / "explainability"
         )
+        self.seed = seed
 
         self.artifact: Optional[ArtifactService] = None
         self.model: Optional[ModelService] = None
@@ -188,6 +199,9 @@ class ServiceRegistry:
         """
         if self.logger is None:
             self.logger = build_logger(name="visionserve.services", log_dir=self.log_dir)
+
+        set_seed(self.seed) if self.seed is not None else set_seed()
+        self.logger.info("SERVICE_REGISTRY seed set (deterministic=True), matching Stage 1 startup behavior.")
 
         device = self.device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.device = device

@@ -9,7 +9,7 @@ description = "VisionServeAI - production deployment and serving layer for the c
 requires-python = ">=3.10"
 
 [tool.setuptools.packages.find]
-include = ["backend*", "inference*", "deployment*", "configs*"]
+include = ["backend*", "inference*", "deployment*", "configs*", "services*"]
 exclude = ["tests*", "docs*", "artifacts*", "scripts*"]
 
 [tool.setuptools.package-data]

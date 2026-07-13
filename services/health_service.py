@@ -26,6 +26,7 @@ from typing import Any, Dict, Optional
 
 import torch
 
+from inference.utils.environment import get_environment_info
 from inference.utils.resource_monitor import get_device_resource_usage, get_resource_usage
 from services.artifact_service import ArtifactService
 from services.model_service import ModelService
@@ -76,6 +77,19 @@ class HealthService:
         :func:`inference.utils.resource_monitor.get_resource_usage`."""
         return get_resource_usage(include_disk=True)
 
+    def environment_info(self) -> Dict[str, Any]:
+        """Static environment/hardware report -- Python/Torch/torchvision/
+        CUDA/cuDNN versions, OS, CPU/RAM totals, and runtime-format
+        availability (ONNX/TorchScript). Via
+        :func:`inference.utils.environment.get_environment_info`, a Stage 1
+        function that had not been reported anywhere in this repository
+        before this cleanup pass -- unlike :meth:`gpu_status` /
+        :meth:`memory_status` (which are point-in-time *usage* snapshots),
+        this is static identity information about the process's
+        environment, useful for support/debugging without needing a
+        separate ``/version`` endpoint once ``backend/`` lands."""
+        return get_environment_info()
+
     def provider_status(self) -> Dict[str, Any]:
         """Execution-provider report for the active runtime (meaningful for
         the ONNX backend; empty lists for PyTorch/TorchScript, which have
@@ -125,4 +139,5 @@ class HealthService:
             "memory": self.memory_status(),
             "providers": self.provider_status(),
             "artifacts": artifact,
+            "environment": self.environment_info(),
         }

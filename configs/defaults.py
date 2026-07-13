@@ -6,23 +6,31 @@ previously module-level globals re-declared (or silently assumed) across
 multiple notebook stages; this is now their single source of truth, imported
 wherever needed instead of redefined.
 
-No values were changed. ``KAGGLE_INPUT_ROOT`` and ``OUTPUT_ROOT`` still point
-at Kaggle-specific paths because that's what the original notebook used and
-this phase's mandate is "no behavioural changes" -- making these
-environment-configurable (e.g. via env var override) is a candidate follow-up
-once the deployment/artifact_discovery.py phase is migrated, not a decision
-to make silently here.
+No default *values* were changed -- ``KAGGLE_INPUT_ROOT`` and ``OUTPUT_ROOT``
+still default to the exact Kaggle-specific paths the original notebook used.
+What was added in this cleanup phase (task: "Artifact compatibility audit --
+do not hardcode Kaggle paths, support local deployment") is an optional
+environment-variable override for each, resolved once at import time:
+``VISIONSERVE_INPUT_ROOT`` / ``VISIONSERVE_OUTPUT_ROOT``. When neither is
+set, behavior is byte-for-byte identical to before this change. This is
+intentionally NOT a reintroduction of Stage 1's recursive Kaggle-dataset-mount
+scan (still out of scope here, per ``services.artifact_service``'s own
+module docstring) -- just an unblocking of the two hardcoded absolute paths
+that would otherwise make local (non-Kaggle) deployment impossible even when
+every other artifact-discovery input (``configs.schema.DeploymentConfig.artifact_roots``)
+is already fully configurable.
 
 Source: sprint05-deployment.ipynb, Stage 1, lines ~39-104.
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Dict, List
 
 SEED: int = 42
-KAGGLE_INPUT_ROOT: Path = Path("/kaggle/input")
-OUTPUT_ROOT: Path = Path("/kaggle/working/sprint05_deployment")
+KAGGLE_INPUT_ROOT: Path = Path(os.environ.get("VISIONSERVE_INPUT_ROOT", "/kaggle/input"))
+OUTPUT_ROOT: Path = Path(os.environ.get("VISIONSERVE_OUTPUT_ROOT", "/kaggle/working/sprint05_deployment"))
 STAGE_DIR_NAME: str = "stage01_environment"
 MAX_SCAN_DEPTH: int = 6
 
