@@ -25,11 +25,15 @@ directory layout instead of a Kaggle notebook: given a resolved
 ``artifact_roots`` mapping (``configs.schema.DeploymentConfig.artifact_roots``,
 category -> directory), :func:`discover_inventory` builds the identical
 "inventory" shape Stage 1 used to produce -- ``{category: {"critical":
-{filename: path_or_None}, "optional": {...}}}`` -- by looking up
-``configs.defaults.CRITICAL_FILES`` / ``OPTIONAL_FILES`` within each root.
-This is NEW orchestration (a directory lookup, not present verbatim
-anywhere in the notebook), but it feeds Stage 2's ``build_artifact_registry``
-the exact input shape that function already expects, so every downstream
+{filename: path_or_None}, "optional": {...}}}`` -- by recursively
+searching each root (``Path(root).rglob(filename)``, see
+:func:`resolve_artifact_file`) for each of
+``configs.defaults.CRITICAL_FILES`` / ``OPTIONAL_FILES``, since real local
+artifact roots nest their files under subdirectories that vary per
+category and run rather than sitting flat inside the root. This is NEW
+orchestration (a directory search, not present verbatim anywhere in the
+notebook), but it feeds Stage 2's ``build_artifact_registry`` the exact
+input shape that function already expects, so every downstream
 validation/classification/hashing/duplicate-detection check runs
 byte-for-byte as originally validated.
 
@@ -52,6 +56,7 @@ reused verbatim as a one-line helper).
 from __future__ import annotations
 
 import csv
+import fnmatch
 import json
 import logging
 from dataclasses import asdict, dataclass, field
@@ -137,37 +142,139 @@ class ArtifactRegistry:
 
 # ======================================================================
 # DISCOVERY (NEW -- production directory scan; see module docstring)
+#
+# ``root / filename`` (a flat, one-level lookup) was the original shape
+# here. Real local artifact exports are not flat -- the same category root
+# routinely nests its files several directories deep, under subdirectory
+# names that vary run to run (e.g. ``sprint03/registry/disease_registry.json``,
+# ``sprint04/checkpoints/_s36_run_a/best_model.pt``). Discovery below is now
+# a recursive search (``Path(root).rglob(filename)``) followed by canonical
+# selection whenever a filename resolves to more than one real file on disk.
 # ======================================================================
+
+# Directory-name path segments (case-insensitive; matched with ``fnmatch``,
+# so a trailing ``*`` acts as a wildcard) that mark a candidate as this
+# category's authoritative location. Used only to RANK candidates when a
+# filename has more than one match under a root -- a single match is always
+# accepted as-is, preferred or not.
+PREFERRED_SUBDIRS: Dict[str, Tuple[str, ...]] = {
+    CATEGORY_SPRINT03: ("registry", "statistics", "manifests", "config"),
+    CATEGORY_TRAINING: ("checkpoints", "metrics", "models", "optimizer", "scheduler"),
+    CATEGORY_EVALUATION: ("stage05_metrics_engine", "stage06_threshold_calibration_engine", "stage08_report_generator", "summary"),
+    CATEGORY_NIH: (),
+}
+
+# Directory-name path segments that mark a candidate as NOT canonical --
+# archived/backup copies, ad-hoc smoke-test or scratch runs, or log/table
+# exports that happen to share a filename with the real artifact. A
+# candidate under one of these is never dropped outright (it's still
+# reported in "Ignored"), only ranked last.
+AVOID_SUBDIRS: Dict[str, Tuple[str, ...]] = {
+    CATEGORY_SPRINT03: ("archive", "archieve", "backup", "old"),
+    CATEGORY_TRAINING: (
+        "_s31_smoke", "_s32_smoke", "_s33_smoke", "_s34_smoke", "_s35_smoke",
+        "_s36_run_*", "backup", "resume",
+    ),
+    CATEGORY_EVALUATION: ("logs", "tables", "figures"),
+    CATEGORY_NIH: (),
+}
+
+
+def _dir_matches(part: str, patterns: Tuple[str, ...]) -> bool:
+    part = part.lower()
+    return any(fnmatch.fnmatch(part, pattern.lower()) for pattern in patterns)
+
+
+def select_canonical_candidate(root: Path, candidates: List[Path], category: str) -> Tuple[Path, List[Path]]:
+    """Rank multiple real files matching the same filename and pick exactly
+    one canonical path. Returns ``(selected, everything_else)`` -- the
+    "everything else" list is what callers log as "Ignored", never
+    silently dropped.
+
+    Ranking, in order:
+      1. Any path segment (between ``root`` and the file) matching this
+         category's :data:`AVOID_SUBDIRS` sorts last.
+      2. Among the rest, any path segment matching :data:`PREFERRED_SUBDIRS`
+         sorts first.
+      3. Shallower paths (fewer intervening directories) sort first.
+      4. More recently modified files sort first.
+      5. Path string, as a final deterministic tiebreak.
+    """
+    preferred = PREFERRED_SUBDIRS.get(category, ())
+    avoided = AVOID_SUBDIRS.get(category, ())
+
+    def sort_key(path: Path):
+        rel_parts = path.relative_to(root).parts[:-1]  # directory components only, not the filename
+        is_avoided = any(_dir_matches(part, avoided) for part in rel_parts)
+        is_preferred = any(_dir_matches(part, preferred) for part in rel_parts)
+        try:
+            mtime = path.stat().st_mtime
+        except OSError:
+            mtime = 0.0
+        return (1 if is_avoided else 0, 0 if is_preferred else 1, len(rel_parts), -mtime, str(path))
+
+    ranked = sorted(candidates, key=sort_key)
+    return ranked[0], ranked[1:]
+
+
+def resolve_artifact_file(
+    root: Optional[str], filename: str, category: str, logger: Optional[logging.Logger] = None,
+) -> Optional[str]:
+    """Recursively locate ``filename`` under ``root`` and return exactly one
+    canonical path (or ``None`` if it doesn't exist anywhere under
+    ``root``).
+
+    Replaces the old flat ``root / filename`` check with
+    ``Path(root).rglob(filename)``: every real file matching ``filename``
+    anywhere under ``root`` is a candidate. With zero candidates this
+    returns ``None`` exactly as the flat check did for a missing file. With
+    exactly one candidate it's returned outright. With more than one,
+    :func:`select_canonical_candidate` picks the winner and every other
+    match is logged (never silently discarded) via ``logger``.
+    """
+    if root is None:
+        return None
+    root_path = Path(root)
+    if not root_path.exists():
+        return None
+
+    candidates = sorted(p for p in root_path.rglob(filename) if p.is_file())
+    if not candidates:
+        return None
+    if len(candidates) == 1:
+        return str(candidates[0])
+
+    selected, ignored = select_canonical_candidate(root_path, candidates, category)
+    if logger is not None:
+        logger.info(
+            "ARTIFACT_DISCOVERY[%s] Found %d copies of %s. Selected: %s. Ignored: %s",
+            category, len(candidates), filename, selected, [str(p) for p in ignored],
+        )
+    return str(selected)
 
 
 def discover_category_inventory(
-    root: Optional[str], critical_files: List[str], optional_files: List[str],
+    root: Optional[str],
+    critical_files: List[str],
+    optional_files: List[str],
+    category: str,
+    logger: Optional[logging.Logger] = None,
 ) -> Dict[str, Dict[str, Optional[str]]]:
-    """Resolve each known filename for one category against ``root``.
-
-    NEW function -- Stage 1's Kaggle dataset-mount scan is out of scope
-    (see module docstring); this is the production equivalent: a direct
-    ``root / filename`` existence check, no recursive search. Returns the
-    same ``{"critical": {...}, "optional": {...}}`` shape Stage 1 used to
-    hand Stage 2, with every path ``None`` (not omitted) when ``root`` is
-    ``None`` or the file doesn't exist there -- so downstream
-    :func:`build_artifact_registry` sees "not discovered" exactly as it
-    already expects to.
+    """Resolve each known filename for one category against ``root``, via
+    recursive, canonical-preferring search (:func:`resolve_artifact_file`).
+    Returns the same ``{"critical": {...}, "optional": {...}}`` shape Stage
+    1 used to hand Stage 2, with every path ``None`` (not omitted) when
+    ``root`` is ``None`` or the file isn't found anywhere under it -- so
+    downstream :func:`build_artifact_registry` sees "not discovered"
+    exactly as it already expects to.
     """
     def _resolve(files: List[str]) -> Dict[str, Optional[str]]:
-        resolved: Dict[str, Optional[str]] = {}
-        for filename in files:
-            if root is None:
-                resolved[filename] = None
-                continue
-            candidate = Path(root) / filename
-            resolved[filename] = str(candidate) if candidate.exists() and candidate.is_file() else None
-        return resolved
+        return {filename: resolve_artifact_file(root, filename, category, logger) for filename in files}
 
     return {"critical": _resolve(critical_files), "optional": _resolve(optional_files)}
 
 
-def discover_inventory(artifact_roots: Dict[str, Optional[str]]) -> Dict[str, Any]:
+def discover_inventory(artifact_roots: Dict[str, Optional[str]], logger: Optional[logging.Logger] = None) -> Dict[str, Any]:
     """Build the full "inventory" dict across every known category.
 
     ``artifact_roots`` is ``configs.schema.DeploymentConfig.artifact_roots``
@@ -179,7 +286,7 @@ def discover_inventory(artifact_roots: Dict[str, Optional[str]]) -> Dict[str, An
     """
     return {
         category: discover_category_inventory(
-            artifact_roots.get(category), CRITICAL_FILES[category], OPTIONAL_FILES[category],
+            artifact_roots.get(category), CRITICAL_FILES[category], OPTIONAL_FILES[category], category, logger,
         )
         for category in KNOWN_CATEGORIES
     }
@@ -417,7 +524,7 @@ class ArtifactService:
         change on disk)."""
         if self._registry is not None and not force:
             return self._registry
-        self._inventory = discover_inventory(self.artifact_roots)
+        self._inventory = discover_inventory(self.artifact_roots, self.logger)
         self._registry = build_artifact_registry(self._inventory, self.device, self.logger)
         self.logger.info(
             "ARTIFACTS discovered: total=%d critical_missing=%d duplicate_groups=%d",

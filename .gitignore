@@ -1,13 +1,22 @@
-# Evaluation outputs
-artifacts/sprint04_evaluation/stage07_interpretability_engine/**
-artifacts/Sprint05_Complete/stage06_explainability/**
-artifacts/Sprint05_Complete/stage05_validation/images/**
-artifacts/Sprint05_Complete/stage04_runtime/samples/**
+.venv/
+__pycache__/
+*.pyc
 
+build/
+dist/
+*.egg-info/
 
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
+.coverage
+htmlcov/
 
+.idea/
+.vscode/
 
-# Logs
+artifacts/
+outputs/
 logs/
 *.log

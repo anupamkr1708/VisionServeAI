@@ -7,31 +7,32 @@ phase's explicit instruction ("Wrap ExplainabilityEngine. Do NOT implement
 GradCAM. It already exists."), this module implements no explainability
 algorithm itself.
 
-Important gap, stated plainly: Stage 6's actual GradCAM-family algorithms
-(~630 lines covering ``ActivationsAndGradients``, ``discover_target_layer``,
-and ``generate_gradcam`` / ``generate_gradcam_plus`` / ``generate_scorecam``
-/ ``generate_eigencam`` / ``generate_guided_backprop`` /
-``generate_integrated_gradients`` / ``generate_occlusion``) have **not**
-been migrated into ``inference/explainability/`` yet -- that package
-currently contains only an empty placeholder ``__init__.py`` from an
-earlier repository-foundation phase. Migrating Stage 6's algorithm is a
-distinct, substantial migration phase of its own and is out of scope here:
-this phase is explicitly "Application Service Layer" / orchestration only,
-and "Do NOT implement GradCAM" forecloses writing that algorithm here even
-to fill the gap.
+Historical note (corrected during a later cleanup/verification pass --
+this docstring originally said the opposite and was never updated once the
+gap it described was closed): Stage 6's GradCAM-family algorithms
+(``ActivationsAndGradients``, ``discover_target_layer``, and
+``generate_gradcam`` / ``generate_gradcam_plus`` / ``generate_scorecam`` /
+``generate_eigencam`` / ``generate_guided_backprop`` /
+``generate_integrated_gradients`` / ``generate_occlusion``) **have since
+been migrated** into ``inference/explainability/`` (see that package's own
+``engine.py``) and are validated, frozen production code. This service's
+"forward-wired" design -- calling through a ``Protocol``-typed injected
+engine rather than importing ``ExplainabilityEngine`` directly -- was
+originally a hedge against that gap; it's kept as-is now because it's
+still good practice (this module stays a thin adapter with no dependency
+on the engine's internals), not because the engine is still missing.
+``ServiceRegistry`` is what actually constructs the real
+``ExplainabilityEngine`` and injects it here -- see that module for the
+current, accurate wiring.
 
-This service is therefore forward-wired: it defines the exact public
-surface a migrated ``ExplainabilityEngine`` will be called through, via
-constructor injection, so that a future migration can drop the real engine
-in without touching this file or any of its callers
-(``ServiceRegistry``/``PredictionService`` never need to know an engine is
-missing). Every method delegates to the injected engine's identically-named
-method (Stage 6, lines ~218-231's own documented public API:
-``generate_gradcam, generate_gradcam_plus, generate_scorecam,
-generate_eigencam, generate_integrated_gradients, generate_guided_backprop,
+Every method delegates to the injected engine's identically-named method
+(Stage 6, lines ~218-231's own documented public API: ``generate_gradcam,
+generate_gradcam_plus, generate_scorecam, generate_eigencam,
+generate_integrated_gradients, generate_guided_backprop,
 generate_occlusion, batch_generate, save_visualization, overlay_heatmap,
 export_results``) and raises a clear, actionable error -- never a silent
-no-op or fabricated result -- if no engine was injected.
+no-op or fabricated result -- if no engine was injected (e.g.
+``ServiceRegistry(..., enable_explainability=False)``).
 
 Source: sprint05-deployment.ipynb, Stage 6, lines ~218-231 (public API this
 wraps, referenced not reimplemented).
