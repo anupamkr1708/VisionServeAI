@@ -1,0 +1,61 @@
+services:
+  api:
+    build:
+      context: .
+      target: runtime
+    image: visionserve-api:latest
+    restart: unless-stopped
+    environment:
+      VISIONSERVE_ARTIFACT_ROOT: /artifacts
+      VISIONSERVE_LOG_DIR: /app/logs
+      VISIONSERVE_FAIL_FAST_ON_STARTUP: "true"
+      UVICORN_WORKERS: "1"
+      # nginx is the only thing that should see the outside world's Host
+      # header; the api container itself is reached only from the nginx
+      # container over the compose network, so this stays permissive here.
+      VISIONSERVE_TRUSTED_HOSTS: "*"
+      VISIONSERVE_CORS_ORIGINS: "*"
+    volumes:
+      - /mnt/g/DEV/projects/VisionServeAI/artifacts:/artifacts:ro
+      - ./logs:/app/logs
+    networks:
+      - visionserve_net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health/ready').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 90s
+      retries: 3
+    # Not published to the host by default -- nginx is the only public
+    # entry point (see below). Uncomment for direct debugging access:
+    # ports:
+    #   - "8000:8000"
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+    networks:
+      - visionserve_net
+
+  # Optional: `docker compose --profile test run --rm test`
+  # Runs the full 180-test suite against the `test` stage from the
+  # Dockerfile -- doesn't touch the running api/nginx services.
+  test:
+    build:
+      context: .
+      target: test
+    profiles: ["test"]
+    networks:
+      - visionserve_net
+
+networks:
+  visionserve_net:
+    driver: bridge
