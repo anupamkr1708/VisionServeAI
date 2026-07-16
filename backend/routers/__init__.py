@@ -1,1 +1,1 @@
-"""API route definitions (predict, explain, health)."""
+"""API route definitions: health, prediction, explainability, metadata, system."""
