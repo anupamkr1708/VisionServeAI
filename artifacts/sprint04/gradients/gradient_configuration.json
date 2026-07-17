@@ -1,8 +1,0 @@
-{
-  "project": "VisionServeAI",
-  "sprint": "04",
-  "phase": "Phase 4 - Training Engine",
-  "accumulation_steps": 2,
-  "clip_grad_norm": 1.0,
-  "gradient_dir": "/kaggle/working/visionserveai/sprint04/gradients"
-}

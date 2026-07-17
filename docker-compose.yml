@@ -5,18 +5,14 @@ services:
       target: runtime
     image: visionserve-api:latest
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      VISIONSERVE_ARTIFACT_ROOT: /artifacts
-      VISIONSERVE_LOG_DIR: /app/logs
       VISIONSERVE_FAIL_FAST_ON_STARTUP: "true"
       UVICORN_WORKERS: "1"
-      # nginx is the only thing that should see the outside world's Host
-      # header; the api container itself is reached only from the nginx
-      # container over the compose network, so this stays permissive here.
       VISIONSERVE_TRUSTED_HOSTS: "*"
       VISIONSERVE_CORS_ORIGINS: "*"
     volumes:
-      - /mnt/g/DEV/projects/VisionServeAI/artifacts:/artifacts:ro
       - ./logs:/app/logs
     networks:
       - visionserve_net
@@ -26,8 +22,6 @@ services:
       timeout: 5s
       start_period: 90s
       retries: 3
-    # Not published to the host by default -- nginx is the only public
-    # entry point (see below). Uncomment for direct debugging access:
     # ports:
     #   - "8000:8000"
 
@@ -45,9 +39,6 @@ services:
     networks:
       - visionserve_net
 
-  # Optional: `docker compose --profile test run --rm test`
-  # Runs the full 180-test suite against the `test` stage from the
-  # Dockerfile -- doesn't touch the running api/nginx services.
   test:
     build:
       context: .

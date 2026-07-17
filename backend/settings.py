@@ -24,6 +24,15 @@ boot in a local/dev/test environment with no environment configured at all
 rather than raising when nothing is configured; ``ServiceRegistry.initialize()``
 is what actually fails fast on missing critical artifacts, exactly as it
 already does today).
+
+Cloud-native artifact provisioning (``HF_*`` variables): when ``HF_REPO_ID``
+is set, :meth:`Settings.resolve_artifact_roots` downloads/caches that
+HuggingFace Hub repository (see ``backend.artifacts_provider``) and feeds
+the resulting local directory into the *same, unmodified*
+``scripts.resolve_artifact_roots`` fingerprint scan already used for a
+bind-mounted ``VISIONSERVE_ARTIFACT_ROOT``. This is a no-op when
+``HF_REPO_ID`` is unset, so it changes nothing for existing local/Docker
+Compose deployments that bind-mount a host artifacts directory.
 """
 from __future__ import annotations
 
@@ -97,6 +106,15 @@ class Settings:
     seed: Optional[int]
     device: Optional[str]
 
+    # ---- Cloud-native artifact provisioning (HuggingFace Hub) -----------
+    # See backend.artifacts_provider. hf_repo_id is the on/off switch:
+    # unset -> this whole path is a no-op, falling through to
+    # artifact_root/artifact_roots_override exactly as before.
+    hf_repo_id: Optional[str]
+    hf_revision: Optional[str]
+    hf_token: Optional[str]
+    hf_cache_dir: Path
+
     # ---- Startup behaviour ---------------------------------------------
     fail_fast_on_startup: bool
 
@@ -119,25 +137,56 @@ class Settings:
         """Resolve ``category -> directory`` for :class:`ServiceRegistry`.
 
         Resolution order:
-          1. Explicit per-category overrides (``VISIONSERVE_ROOT_<CATEGORY>``)
-             always win for that category.
-          2. If ``artifact_root`` (``VISIONSERVE_ARTIFACT_ROOT``) is set,
-             every category not already overridden is resolved from it via
-             :func:`scripts.resolve_artifact_roots.resolve_artifact_roots` --
-             the exact library entry point that module's own docstring
-             documents for feeding ``ServiceRegistry`` directly.
-          3. Anything still unresolved is ``None`` (matches
+          1. If ``hf_repo_id`` (``HF_REPO_ID``) is set, download/verify the
+             HuggingFace Hub snapshot (``backend.artifacts_provider``) and
+             use its local directory as the effective root for step 2 --
+             this takes priority over ``artifact_root`` since a configured
+             cloud source is a deliberate choice, not a fallback.
+          2. Otherwise, if ``artifact_root`` (``VISIONSERVE_ARTIFACT_ROOT``)
+             is set, every category not already overridden is resolved
+             from it via
+             :func:`scripts.resolve_artifact_roots.resolve_artifact_roots`
+             -- the exact library entry point that module's own docstring
+             documents for feeding ``ServiceRegistry`` directly. This is
+             the SAME call used for the HF-downloaded directory in step 1
+             -- a HuggingFace snapshot and a bind-mounted host directory
+             are resolved by identical, unmodified fingerprint-matching
+             logic.
+          3. Explicit per-category overrides (``VISIONSERVE_ROOT_<CATEGORY>``)
+             always win last, regardless of source.
+          4. Anything still unresolved is ``None`` (matches
              ``ArtifactService``'s own tolerant-of-missing-category
              contract; ``ServiceRegistry.initialize()`` -> ``ModelService.
              load_model()`` -> ``ArtifactService`` is what fails fast on
              critical files actually being absent, not this function).
+
+        Raises:
+            backend.artifacts_provider.ArtifactProvisioningError: if
+                ``hf_repo_id`` is set but the download/verification fails.
+                This is a plain ``RuntimeError`` subclass, so it flows
+                through the existing ``VISIONSERVE_FAIL_FAST_ON_STARTUP``
+                toggle in ``backend.lifecycle`` exactly like any other
+                startup failure.
         """
         resolved: Dict[str, Optional[str]] = {category: None for category in ARTIFACT_CATEGORIES}
 
-        if self.artifact_root is not None:
+        effective_root = self.artifact_root
+
+        if self.hf_repo_id:
+            from backend.artifacts_provider import ensure_artifacts_available
+
+            effective_root = ensure_artifacts_available(
+                repo_id=self.hf_repo_id,
+                cache_dir=self.hf_cache_dir,
+                revision=self.hf_revision,
+                token=self.hf_token,
+                logger=logger,
+            )
+
+        if effective_root is not None:
             from scripts.resolve_artifact_roots import resolve_artifact_roots as _resolve
 
-            resolved.update(_resolve(str(self.artifact_root), logger=logger))
+            resolved.update(_resolve(str(effective_root), logger=logger))
 
         for category, path in self.artifact_roots_override.items():
             if path is not None:
@@ -174,6 +223,10 @@ def get_settings() -> Settings:
         log_dir=_env_optional_path("VISIONSERVE_LOG_DIR") or Path("logs"),
         seed=(_env_int("VISIONSERVE_SEED", -1) if os.environ.get("VISIONSERVE_SEED") else None),
         device=os.environ.get("VISIONSERVE_DEVICE"),
+        hf_repo_id=os.environ.get("HF_REPO_ID") or None,
+        hf_revision=os.environ.get("HF_REVISION") or None,
+        hf_token=os.environ.get("HF_TOKEN") or None,
+        hf_cache_dir=_env_optional_path("HF_CACHE_DIR") or (Path(".cache") / "hf_artifacts"),
         fail_fast_on_startup=_env_bool("VISIONSERVE_FAIL_FAST_ON_STARTUP", True),
         cors_allow_origins=_env_list("VISIONSERVE_CORS_ORIGINS", ["*"]),
         trusted_hosts=_env_list("VISIONSERVE_TRUSTED_HOSTS", ["*"]),

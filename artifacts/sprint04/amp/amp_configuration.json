@@ -1,9 +1,0 @@
-{
-  "project": "VisionServeAI",
-  "sprint": "04",
-  "phase": "Phase 4 - Training Engine",
-  "amp_enabled": true,
-  "device": "cuda",
-  "scaler_initial_scale": 32768.0,
-  "amp_dir": "/kaggle/working/visionserveai/sprint04/amp"
-}

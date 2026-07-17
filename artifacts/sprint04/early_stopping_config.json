@@ -1,8 +1,0 @@
-{
-  "project": "VisionServeAI",
-  "sprint": "04",
-  "phase": "Phase 5 - Training Loop",
-  "patience": 7,
-  "min_delta": 0.0,
-  "monitored_metric": "validation_loss (lower is better)"
-}

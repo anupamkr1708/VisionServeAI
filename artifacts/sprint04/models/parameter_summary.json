@@ -1,8 +1,0 @@
-{
-  "total_parameters": 6968206,
-  "trainable_parameters": 14350,
-  "frozen_parameters": 6953856,
-  "trainable_percentage": 0.2059,
-  "frozen_percentage": 99.7941,
-  "estimated_size_mb_fp32": 26.58
-}

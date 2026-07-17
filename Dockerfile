@@ -63,6 +63,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     VISIONSERVE_ARTIFACT_ROOT=/artifacts \
     VISIONSERVE_LOG_DIR=/app/logs \
     VISIONSERVE_EXPLAINABILITY_OUTPUT_DIR=/app/outputs/explainability \
+    HF_CACHE_DIR=/app/.cache/hf_artifacts \
     PORT=8000 \
     UVICORN_WORKERS=1
 
@@ -78,8 +79,8 @@ COPY services/ services/
 COPY scripts/ scripts/
 COPY backend/ backend/
 
-RUN mkdir -p /app/logs /app/outputs/explainability /artifacts \
-    && chown -R visionserve:visionserve /app/logs /app/outputs /artifacts
+RUN mkdir -p /app/logs /app/outputs/explainability /artifacts /app/.cache/hf_artifacts \
+    && chown -R visionserve:visionserve /app/logs /app/outputs /artifacts /app/.cache
 
 USER visionserve
 
